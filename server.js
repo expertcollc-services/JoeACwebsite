@@ -2351,14 +2351,21 @@ function csvCell(value) {
   return safe;
 }
 
-loadStore()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`AC website server running on http://127.0.0.1:${PORT}`);
-    });
-  })
-  .catch((error) => {
+if (process.env.VERCEL) {
+  loadStore().catch((error) => {
     console.error("Failed to initialize store:", error);
-    process.exit(1);
   });
+  module.exports = app;
+} else {
+  loadStore()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`AC website server running on http://127.0.0.1:${PORT}`);
+      });
+    })
+    .catch((error) => {
+      console.error("Failed to initialize store:", error);
+      process.exit(1);
+    });
+}
 
