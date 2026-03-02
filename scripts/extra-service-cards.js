@@ -9,12 +9,12 @@
     {
       title: "Home Services",
       description: "Explore our HVAC and refrigeration services for your business.",
-      href: "/services/"
+      href: "/commercial-hvac/"
     },
     {
       title: "Reviews",
       description: "Read what local customers say about our team and results.",
-      href: "/reviews/"
+      href: "/home/"
     }
   ];
 
@@ -26,8 +26,8 @@
     var style = document.createElement("style");
     style.id = "ac-extra-service-cards-style";
     style.textContent = [
-      "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:space-between!important;column-gap:1.25%!important;row-gap:20px!important;}",
-      "[id='6c385d1b'] > .flex-element.group{width:19%!important;max-width:19%!important;flex:0 0 19%!important;margin:0!important;min-height:240px!important;align-items:center!important;}",
+      "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:16px!important;overflow:visible!important;}",
+      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 64px)/5)!important;max-width:calc((100% - 64px)/5)!important;flex:0 0 calc((100% - 64px)/5)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;}",
       "[id='6c385d1b'] > .flex-element.group [data-widget-type='link']{width:100%!important;max-width:100%!important;height:50px!important;}",
       "[id='6c385d1b'] > .flex-element.group a.dmButtonLink{width:100%!important;}",
       "[id='6c385d1b'] > .flex-element.group .text{white-space:nowrap;}",
@@ -37,9 +37,9 @@
       "[id='6c385d1b'] .ac-extra-service-card .ac-card-description p{margin:0;line-height:1.5;}",
       "[id='6c385d1b'] .ac-extra-service-icon{width:70px;height:70px;border:2px solid var(--color_1,#e50707);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:var(--color_1,#e50707);}",
       "[id='6c385d1b'] .ac-extra-service-icon .icon{font-size:28px;}",
-      "@media (min-width:767px) and (max-width:1024px){[id='6c385d1b']{flex-wrap:wrap!important;column-gap:3%!important;}[id='6c385d1b'] > .flex-element.group{width:48.5%!important;max-width:48.5%!important;flex:0 0 48.5%!important;}}",
+      "@media (min-width:767px) and (max-width:1024px){[id='6c385d1b']{flex-wrap:wrap!important;gap:16px!important;}[id='6c385d1b'] > .flex-element.group{width:calc((100% - 16px)/2)!important;max-width:calc((100% - 16px)/2)!important;flex:0 0 calc((100% - 16px)/2)!important;}}",
       "@media (max-width:767px){[id='6c385d1b']{flex-wrap:wrap!important;row-gap:25px!important;}[id='6c385d1b'] > .flex-element.group{width:100%!important;max-width:100%!important;flex:0 0 100%!important;}}",
-      "@media (min-width:468px) and (max-width:767px){[id='6c385d1b']{column-gap:3%!important;}[id='6c385d1b'] > .flex-element.group{width:48.5%!important;max-width:48.5%!important;flex:0 0 48.5%!important;}}"
+      "@media (min-width:468px) and (max-width:767px){[id='6c385d1b']{gap:16px!important;}[id='6c385d1b'] > .flex-element.group{width:calc((100% - 16px)/2)!important;max-width:calc((100% - 16px)/2)!important;flex:0 0 calc((100% - 16px)/2)!important;}}"
     ].join("");
     document.head.appendChild(style);
   }

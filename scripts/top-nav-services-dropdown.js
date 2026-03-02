@@ -6,11 +6,11 @@
     },
     {
       label: "Services",
-      href: "/services/",
+      href: "/commercial-hvac/",
       children: [
-        { label: "HVAC/Refrigeration", href: "/services/commercial-refrigeration/" },
-        { label: "Electrical", href: "/services/" },
-        { label: "Preventive Maintenance", href: "/services/preventive-maintenance-plans/" }
+        { label: "HVAC/Refrigeration", href: "/commercial-refrigeration/" },
+        { label: "Electrical", href: "/commercial-hvac/" },
+        { label: "Preventive Maintenance", href: "/commercial-hvac/" }
       ]
     },
     {
