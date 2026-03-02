@@ -1,0 +1,1449 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Back Office | Elite Quality HVAC</title>
+  <meta name="description" content="Back-office CRM and marketing control panel for commercial HVAC growth.">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#0b2340">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js" defer></script>
+  <script defer src="dashboard.js"></script>
+</head>
+<body class="dashboard-body">
+  <a class="skip-link" href="#dash-main-content">Skip to dashboard content</a>
+  <div class="dashboard-shell">
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-brand">
+        <span class="brand-mark">EQ</span>
+        <span>
+          <strong>Back Office</strong>
+          <small>CRM + Marketing Control</small>
+        </span>
+      </a>
+      <nav>
+        <a href="#quickstart">1. Quick Start</a>
+        <a href="#overview">2. Business Pulse</a>
+        <a href="#traffic">3. Traffic</a>
+        <a href="#integrations">4. Integrations</a>
+        <a href="#leads">5. Leads</a>
+        <a href="#locations">6. Locations</a>
+        <a href="#services-manager">7. Services</a>
+        <a href="#promotions">8. Promotions</a>
+        <a href="#content">9. Shop / Blog</a>
+        <a href="#website-content">10. Website Content</a>
+        <a href="#directories">11. Directories</a>
+        <a href="#reviews">12. Reviews</a>
+        <a href="#maintenance">13. Maintenance</a>
+        <a href="#seo">14. SEO Monitor</a>
+        <a href="#settings">15. Settings</a>
+        <a href="#users">16. Team Roles</a>
+      </nav>
+      <button id="sync-all-btn" class="button button-small">Run Directory Sync</button>
+    </aside>
+
+    <main class="dash-main" id="dash-main-content">
+      <header class="dash-topbar">
+        <div>
+          <h1>Commercial HVAC Back Office</h1>
+          <p>Simple workflow: connect integrations, track traffic, and convert leads into booked jobs.</p>
+          <p id="dash-status" class="dash-status dash-status-info" role="status" aria-live="polite">Connecting...</p>
+        </div>
+        <div class="dash-top-actions">
+          <label class="role-picker" for="session-role">
+            Role
+            <select id="session-role">
+              <option value="admin">Admin</option>
+              <option value="manager">Manager</option>
+              <option value="tech">Tech</option>
+              <option value="marketing">Marketing</option>
+            </select>
+          </label>
+          <button id="export-btn" class="button button-ghost button-small">Export Full CSV</button>
+          <span id="last-sync" class="last-sync">Last sync: never</span>
+        </div>
+      </header>
+
+      <section class="dash-section">
+        <div class="panel instruction-card instruction-card-global" role="note" aria-label="Back office master instructions">
+          <h2>Read This First: Back Office Instructions</h2>
+          <p>This screen controls your whole business website and marketing. Do these in order every time.</p>
+          <ol class="instruction-steps">
+            <li>Open <a href="#settings">Settings</a>. Add phone, email, address, and tracking IDs. Click <strong>Save Settings</strong>.</li>
+            <li>Open <a href="#integrations">Integrations</a>. Connect Google, Bing, Yahoo, BBB, and directories you use.</li>
+            <li>Open <a href="#website-content">Website Content</a>. Change homepage text and images. Save when done.</li>
+            <li>Open <a href="#services-manager">Services</a>, <a href="#locations">Locations</a>, and <a href="#promotions">Promotions</a> to update what customers see.</li>
+            <li>Open <a href="#content">Shop / Blog</a> to post products and articles with images or media.</li>
+            <li>Open <a href="#leads">Leads</a> every day. Move new leads to <strong>Contacted</strong>, then <strong>Booked</strong>, then <strong>Closed</strong>.</li>
+            <li>Open <a href="#traffic">Traffic</a> and <a href="#directories">Directories</a> weekly to check what channels are bringing real jobs.</li>
+          </ol>
+          <p class="instruction-tip"><strong>Simple rule:</strong> Type information, click the save button in that section, then check the table below to confirm your update appears.</p>
+        </div>
+      </section>
+
+      <section id="quickstart" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Start Here</p>
+          <h2>Quick Start Checklist</h2>
+          <p class="dash-helper">Follow these steps in order. This is the fastest way to get tracking, ads, and lead flow working.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Quick Start</h3>
+          <ol class="instruction-steps">
+            <li>Start at <strong>Step 1</strong> and click the button to jump to that section.</li>
+            <li>Complete the section and save.</li>
+            <li>Come back and move to the next step card.</li>
+          </ol>
+          <p class="instruction-tip"><strong>Goal:</strong> when all 3 steps are complete, your marketing and lead flow are ready.</p>
+        </div>
+        <div class="quickstart-grid">
+          <article class="quickstart-card">
+            <header>
+              <span class="step-pill">Step 1</span>
+              <strong>Set business profile and tags</strong>
+            </header>
+            <p>Go to Settings and add business info plus Google/Bing tracking IDs.</p>
+            <p id="qs-tracking" class="quickstart-state">Checking...</p>
+            <a class="button button-small" href="#settings">Open Settings</a>
+          </article>
+          <article class="quickstart-card">
+            <header>
+              <span class="step-pill">Step 2</span>
+              <strong>Connect ad and listing integrations</strong>
+            </header>
+            <p>Use Integration Hub to activate Google Ads, Bing, Yahoo, BBB, and major directories.</p>
+            <p id="qs-integrations" class="quickstart-state">Checking...</p>
+            <a class="button button-small" href="#integrations">Open Integration Hub</a>
+          </article>
+          <article class="quickstart-card">
+            <header>
+              <span class="step-pill">Step 3</span>
+              <strong>Watch traffic and handle leads</strong>
+            </header>
+            <p>Track source performance, then update lead status to contacted/booked/closed.</p>
+            <p id="qs-leads" class="quickstart-state">Checking...</p>
+            <a class="button button-small" href="#traffic">Open Traffic</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="overview" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Dashboard</p>
+          <h2>Business Pulse</h2>
+          <p class="dash-helper">Live business summary from leads, calls, and active marketing channels.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to read Business Pulse</h3>
+          <ol class="instruction-steps">
+            <li>Look at the top numbers first: leads today, leads this month, calls, and form submissions.</li>
+            <li>Check the two status badges: <strong>Google and Bing Ad Ready</strong> and <strong>Local Listing Management</strong>.</li>
+            <li>Review charts: trend chart shows growth, status chart shows how many leads are new vs booked.</li>
+            <li>Read <strong>Recent Activity</strong> to see the latest changes made by your team.</li>
+          </ol>
+        </div>
+        <div class="kpi-grid kpi-grid-5">
+          <article class="kpi-card">
+            <span>Leads Today</span>
+            <strong id="kpi-leads-today">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Leads This Month</span>
+            <strong id="kpi-leads-month">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Calls Tracked</span>
+            <strong id="kpi-calls">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Form Submissions</span>
+            <strong id="kpi-forms">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Maintenance Signups</span>
+            <strong id="kpi-maint-signups">0</strong>
+          </article>
+        </div>
+
+        <div class="panel marketing-controls-panel">
+          <h3>Marketing Controls (Back Office Only)</h3>
+          <div class="marketing-controls-grid">
+            <article class="marketing-control-card">
+              <div class="marketing-control-head">
+                <strong>Google and Bing Ad Ready</strong>
+                <span id="bo-ad-ready-status" class="status-chip status-pending">Checking</span>
+              </div>
+              <p id="bo-ad-ready-detail">Reviewing ad channel readiness...</p>
+            </article>
+            <article class="marketing-control-card">
+              <div class="marketing-control-head">
+                <strong>Local Listing Management</strong>
+                <span id="bo-listing-status" class="status-chip status-pending">Checking</span>
+              </div>
+              <p id="bo-listing-detail">Reviewing listing directory status...</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="chart-grid">
+          <article class="panel chart-panel">
+            <h3>Leads Trend (6 months)</h3>
+            <canvas id="trend-chart" class="chart-canvas" aria-label="Leads trend chart"></canvas>
+          </article>
+          <article class="panel chart-panel">
+            <h3>Lead Status Mix</h3>
+            <canvas id="lead-status-chart" class="chart-canvas" aria-label="Lead status chart"></canvas>
+          </article>
+        </div>
+
+        <div class="panel">
+          <h3>Recent Activity</h3>
+          <ul id="activity-list" class="activity-list"></ul>
+        </div>
+      </section>
+
+      <section id="traffic" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Traffic and Attribution</p>
+          <h2>Where your leads are coming from</h2>
+          <p class="dash-helper">Use this section to compare channel clicks vs. leads and spot what is producing booked jobs.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Traffic</h3>
+          <ol class="instruction-steps">
+            <li>Look at <strong>Total Channel Clicks</strong> and <strong>Total Leads</strong>.</li>
+            <li>Check <strong>Click-to-Lead Rate</strong> to see if traffic is quality.</li>
+            <li>In <strong>Channel Performance</strong>, compare sources like Google Ads, Bing, Yelp, and Directories.</li>
+            <li>Put more budget into channels with the best booked jobs.</li>
+          </ol>
+        </div>
+        <div class="kpi-grid kpi-grid-4">
+          <article class="kpi-card">
+            <span>Total Channel Clicks</span>
+            <strong id="traffic-total-clicks">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Total Leads</span>
+            <strong id="traffic-total-leads">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Paid-Source Leads</span>
+            <strong id="traffic-paid-leads">0</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Click-to-Lead Rate</span>
+            <strong id="traffic-conversion-rate">0%</strong>
+          </article>
+        </div>
+        <div class="chart-grid chart-grid-traffic">
+          <article class="panel chart-panel">
+            <h3>Lead Source Mix</h3>
+            <canvas id="traffic-source-chart" class="chart-canvas" aria-label="Traffic source mix chart"></canvas>
+          </article>
+          <article class="panel panel-table">
+            <h3>Channel Performance</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Source</th>
+                  <th>Clicks</th>
+                  <th>Leads</th>
+                  <th>Booked</th>
+                  <th>Conv.</th>
+                </tr>
+              </thead>
+              <tbody id="traffic-source-body"></tbody>
+            </table>
+          </article>
+        </div>
+      </section>
+
+      <section id="integrations" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Integration Hub</p>
+          <h2>Ad and directory integration-ready system</h2>
+          <p class="dash-helper">Connect and track platforms like Google, Bing, Yahoo, BBB, Yelp, and more from one place.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Integrations</h3>
+          <ol class="instruction-steps">
+            <li>Use <strong>Type</strong> filter to show Ads or Directory platforms.</li>
+            <li>Search by name (example: Google, Bing, BBB, Yelp).</li>
+            <li>Click <strong>Connect</strong> on each platform you use.</li>
+            <li>Use <strong>Open</strong> to verify listing or ad account pages quickly.</li>
+            <li>Click <strong>Connect Core Platforms</strong> to auto-connect your main channels.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <div class="filter-row integration-filter-row">
+            <div class="form-row">
+              <label for="integration-filter-type">Type</label>
+              <select id="integration-filter-type">
+                <option value="all">All</option>
+                <option value="ads">Ads</option>
+                <option value="directory">Directory</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="integration-search">Search Platform</label>
+              <input id="integration-search" placeholder="Google, Bing, BBB, Yelp...">
+            </div>
+            <div class="form-row">
+              <label>&nbsp;</label>
+              <button id="connect-core-btn" class="button button-small" type="button">Connect Core Platforms</button>
+            </div>
+          </div>
+        </div>
+        <div id="integration-grid" class="integration-grid"></div>
+      </section>
+
+      <section id="leads" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">CRM</p>
+          <h2>Leads and Requests</h2>
+          <p class="dash-helper">Update each lead status as your team contacts, books, and closes work.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Leads</h3>
+          <ol class="instruction-steps">
+            <li>Use filters (city, service, status, search) to find the lead fast.</li>
+            <li>Open the lead row and add notes after every call or message.</li>
+            <li>Move status in this order: <strong>New</strong> to <strong>Contacted</strong> to <strong>Booked</strong> to <strong>Closed</strong>.</li>
+            <li>Use <strong>Export Leads CSV</strong> if you need a report.</li>
+          </ol>
+          <p class="instruction-tip"><strong>Important:</strong> every form submitted on the website appears here.</p>
+        </div>
+        <div class="panel">
+          <div class="filter-row">
+            <div class="form-row">
+              <label for="lead-filter-city">City</label>
+              <input id="lead-filter-city" placeholder="Chicago">
+            </div>
+            <div class="form-row">
+              <label for="lead-filter-service">Service</label>
+              <input id="lead-filter-service" placeholder="Emergency Repair">
+            </div>
+            <div class="form-row">
+              <label for="lead-filter-status">Status</label>
+              <select id="lead-filter-status">
+                <option value="all">All</option>
+                <option value="new">New</option>
+                <option value="contacted">Contacted</option>
+                <option value="booked">Booked</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="lead-search">Search</label>
+              <input id="lead-search" placeholder="name, email, phone">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="export-leads-btn" class="button button-small" type="button">Export Leads CSV</button>
+          </div>
+        </div>
+
+        <div class="panel panel-table">
+          <table>
+            <caption class="visually-hidden">Lead management table</caption>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Business</th>
+                <th>Contact</th>
+                <th>City</th>
+                <th>Service</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="lead-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="locations" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">SEO</p>
+          <h2>Locations Manager</h2>
+          <p class="dash-helper">Add or edit city pages so you can rank locally and route service calls by area.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Locations</h3>
+          <ol class="instruction-steps">
+            <li>Type city name (example: Chicago) and slug (example: chicago).</li>
+            <li>Add intro text, services summary, and optional testimonial.</li>
+            <li>Paste an image URL and map note so the page feels local and real.</li>
+            <li>Keep <strong>Published</strong> checked when the city page is ready for customers.</li>
+            <li>Click <strong>Save Location</strong>, then verify it appears in the table.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="location-form" class="control-form">
+            <input id="location-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="location-city">City Name</label>
+                <input id="location-city" required placeholder="Schaumburg">
+              </div>
+              <div class="form-row">
+                <label for="location-slug">Slug</label>
+                <input id="location-slug" placeholder="schaumburg">
+              </div>
+              <div class="form-row">
+                <label for="location-image">Image URL</label>
+                <input id="location-image" placeholder="https://...">
+              </div>
+              <div class="form-row checkbox-row">
+                <label for="location-published">Published</label>
+                <input id="location-published" type="checkbox" checked>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="location-intro">Intro</label>
+                <textarea id="location-intro" rows="3" maxlength="1000"></textarea>
+              </div>
+              <div class="form-row">
+                <label for="location-services">Service Summary</label>
+                <textarea id="location-services" rows="3" maxlength="1000"></textarea>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="location-testimonial">Local Testimonial</label>
+                <input id="location-testimonial" maxlength="400" placeholder="Great response time...">
+              </div>
+              <div class="form-row">
+                <label for="location-map">Map Embed or Note</label>
+                <input id="location-map" maxlength="400" placeholder="Downtown service radius map block">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Location</button>
+              <button id="location-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Slug</th>
+                <th>Published</th>
+                <th>Updated</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="location-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="services-manager" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>Services Manager</h2>
+          <p class="dash-helper">Keep service descriptions and pricing notes current for customer clarity and ad landing page quality.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Services</h3>
+          <ol class="instruction-steps">
+            <li>Type a clear service name customers will understand.</li>
+            <li>Add a slug (short URL name), image URL, description, and pricing note.</li>
+            <li>Keep <strong>Active</strong> checked if this service should show publicly.</li>
+            <li>Click <strong>Save Service</strong> and confirm it appears in the table.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="service-form" class="control-form">
+            <input id="service-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="service-name">Service Name</label>
+                <input id="service-name" required>
+              </div>
+              <div class="form-row">
+                <label for="service-slug">Slug</label>
+                <input id="service-slug">
+              </div>
+              <div class="form-row">
+                <label for="service-image">Image URL</label>
+                <input id="service-image">
+              </div>
+              <div class="form-row checkbox-row">
+                <label for="service-active">Active</label>
+                <input id="service-active" type="checkbox" checked>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="service-pricing">Pricing Notes</label>
+                <input id="service-pricing" maxlength="240" placeholder="Starting from...">
+              </div>
+              <div class="form-row">
+                <label for="service-description">Description</label>
+                <textarea id="service-description" rows="3" maxlength="1000"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Service</button>
+              <button id="service-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Active</th>
+                <th>Pricing</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="service-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="promotions" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Ads + Offers</p>
+          <h2>Promotions Manager</h2>
+          <p class="dash-helper">Create seasonal offers, map them to pages and cities, and keep start/end dates accurate.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Promotions</h3>
+          <ol class="instruction-steps">
+            <li>Write a short title and offer details customers can understand fast.</li>
+            <li>Set start and end dates so the offer turns on/off correctly.</li>
+            <li>Set status to <strong>Active</strong> when the promotion should show on the site.</li>
+            <li>Choose pages and cities so only the right audience sees the offer.</li>
+            <li>Click <strong>Save Promotion</strong> and verify it appears in the table below.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="promotion-form" class="control-form">
+            <input id="promotion-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="promotion-title">Promotion Title</label>
+                <input id="promotion-title" required>
+              </div>
+              <div class="form-row">
+                <label for="promotion-cta">CTA Text</label>
+                <input id="promotion-cta" placeholder="Book Now">
+              </div>
+              <div class="form-row">
+                <label for="promotion-start">Start Date</label>
+                <input id="promotion-start" type="date" required>
+              </div>
+              <div class="form-row">
+                <label for="promotion-end">End Date</label>
+                <input id="promotion-end" type="date" required>
+              </div>
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="promotion-status">Status</label>
+                <select id="promotion-status">
+                  <option value="draft">Draft</option>
+                  <option value="active">Active</option>
+                  <option value="expired">Expired</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="promotion-banner">Banner Image URL</label>
+                <input id="promotion-banner">
+              </div>
+              <div class="form-row">
+                <label for="promotion-pages">Pages (comma list)</label>
+                <input id="promotion-pages" placeholder="/,/shop.html,/locations/chicago/">
+              </div>
+              <div class="form-row">
+                <label for="promotion-cities">Cities (comma list)</label>
+                <input id="promotion-cities" placeholder="Chicago,Naperville">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="promotion-description">Description</label>
+              <textarea id="promotion-description" rows="3" maxlength="1000"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Promotion</button>
+              <button id="promotion-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Date Range</th>
+                <th>Targets</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="promotion-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="content" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Shop and Blog</p>
+          <h2>Shop and Blog Publisher</h2>
+          <p class="dash-helper">Use `Post Type = Shop` for products/offers and `Post Type = Blog` for articles. Add media URLs and full content from this panel.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Shop and Blog Publisher</h3>
+          <ol class="instruction-steps">
+            <li>Pick <strong>Post Type</strong>: <strong>Shop</strong> for products/offers, <strong>Blog</strong> for articles.</li>
+            <li>Add title, featured image, excerpt, and full content.</li>
+            <li>For shop posts, add price text and checkout link.</li>
+            <li>For blog posts, add helpful content and media URLs for extra images.</li>
+            <li>Set status to <strong>Published</strong> and click <strong>Save Post</strong>.</li>
+          </ol>
+          <p class="instruction-tip"><strong>Tip:</strong> use the filter above the table to view only Shop or only Blog items.</p>
+        </div>
+        <div class="panel">
+          <form id="post-form" class="control-form">
+            <input id="post-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="post-title">Title</label>
+                <input id="post-title" required>
+              </div>
+              <div class="form-row">
+                <label for="post-slug">Slug</label>
+                <input id="post-slug">
+              </div>
+              <div class="form-row">
+                <label for="post-category">Category</label>
+                <input id="post-category" placeholder="Troubleshooting">
+              </div>
+              <div class="form-row">
+                <label for="post-status">Status</label>
+                <select id="post-status">
+                  <option value="draft">Draft</option>
+                  <option value="scheduled">Scheduled</option>
+                  <option value="published">Published</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="post-type">Post Type</label>
+                <select id="post-type">
+                  <option value="blog">Blog</option>
+                  <option value="shop">Shop</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="post-price">Price / Offer Text</label>
+                <input id="post-price" maxlength="120" placeholder="$199 Tune-Up">
+              </div>
+              <div class="form-row">
+                <label for="post-buy-url">Shop Checkout / CTA Link</label>
+                <input id="post-buy-url" maxlength="2000" placeholder="https://... or /index.html#appointments">
+              </div>
+              <div class="form-row">
+                <label for="post-badge">Badge</label>
+                <input id="post-badge" maxlength="120" placeholder="Featured">
+              </div>
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="post-publish-date">Publish Date</label>
+                <input id="post-publish-date" type="date">
+              </div>
+              <div class="form-row">
+                <label for="post-image">Featured Image URL</label>
+                <input id="post-image">
+              </div>
+              <div class="form-row">
+                <label for="post-meta-title">Meta Title</label>
+                <input id="post-meta-title" maxlength="180">
+              </div>
+              <div class="form-row">
+                <label for="post-meta-description">Meta Description</label>
+                <input id="post-meta-description" maxlength="260">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="post-excerpt">Excerpt</label>
+              <textarea id="post-excerpt" rows="3" maxlength="1200"></textarea>
+            </div>
+            <div class="form-row">
+              <label for="post-content">Full Content</label>
+              <textarea id="post-content" rows="8" maxlength="20000" placeholder="Add complete blog or product content here."></textarea>
+            </div>
+            <div class="form-row">
+              <label for="post-media-urls">Media URLs (comma separated)</label>
+              <textarea id="post-media-urls" rows="2" maxlength="4000" placeholder="https://...image1.jpg, https://...image2.jpg, https://...video-cover.jpg"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Post</button>
+              <button id="post-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <div class="filter-row">
+            <div class="form-row">
+              <label for="post-filter-type">Filter Posts</label>
+              <select id="post-filter-type">
+                <option value="all">All</option>
+                <option value="shop">Shop Products</option>
+                <option value="blog">Blog Posts</option>
+              </select>
+            </div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Media</th>
+                <th>Publish Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="post-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="website-content" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Public Website Content</p>
+          <h2>Website Images and Homepage Text</h2>
+          <p class="dash-helper">Replace website images and headings without editing code. Save once to update live site content feed.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Website Content</h3>
+          <ol class="instruction-steps">
+            <li>Paste image links into image URL fields to replace pictures on the live site.</li>
+            <li>Edit hero title, subtitles, and section headings to match your offer.</li>
+            <li>Fill Shop and Blog page titles so those pages stay branded.</li>
+            <li>Click <strong>Save Website Content</strong> once after finishing your edits.</li>
+            <li>Refresh the public website to confirm the new text/images are showing.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="site-content-form" class="control-form">
+            <h3>Hero Section</h3>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="site-hero-eyebrow">Hero Eyebrow</label>
+                <input id="site-hero-eyebrow" maxlength="260">
+              </div>
+              <div class="form-row">
+                <label for="site-hero-title">Hero Title</label>
+                <input id="site-hero-title" maxlength="1200">
+              </div>
+              <div class="form-row">
+                <label for="site-hero-subtitle">Hero Subtitle</label>
+                <input id="site-hero-subtitle" maxlength="2000">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="site-hero-bg">Hero Background Image URL</label>
+              <input id="site-hero-bg" maxlength="2000">
+            </div>
+
+            <h3>Service Card Images</h3>
+            <div class="form-row">
+              <label for="site-service-heading">Services Section Heading</label>
+              <input id="site-service-heading" maxlength="1200">
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="site-service-img-1">Service Image 1</label>
+                <input id="site-service-img-1" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-service-img-2">Service Image 2</label>
+                <input id="site-service-img-2" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-service-img-3">Service Image 3</label>
+                <input id="site-service-img-3" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-service-img-4">Service Image 4</label>
+                <input id="site-service-img-4" maxlength="2000">
+              </div>
+            </div>
+
+            <h3>Featured Blocks</h3>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="site-expertise-heading">Expertise Heading</label>
+                <input id="site-expertise-heading" maxlength="1200">
+              </div>
+              <div class="form-row">
+                <label for="site-expertise-img">Expertise Image URL</label>
+                <input id="site-expertise-img" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-promo-bg">Promo Background Image URL</label>
+                <input id="site-promo-bg" maxlength="2000">
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="site-promo-title">Promo Title</label>
+                <input id="site-promo-title" maxlength="1200">
+              </div>
+              <div class="form-row">
+                <label for="site-promo-desc">Promo Description</label>
+                <input id="site-promo-desc" maxlength="2000">
+              </div>
+            </div>
+
+            <h3>Quick Link Image Cards</h3>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="site-quick-img-1">Quick Link Image 1</label>
+                <input id="site-quick-img-1" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-quick-img-2">Quick Link Image 2</label>
+                <input id="site-quick-img-2" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-quick-img-3">Quick Link Image 3</label>
+                <input id="site-quick-img-3" maxlength="2000">
+              </div>
+            </div>
+
+            <h3>Shop Page</h3>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="site-shop-title">Shop Page Title</label>
+                <input id="site-shop-title" maxlength="1200">
+              </div>
+              <div class="form-row">
+                <label for="site-shop-subtitle">Shop Page Subtitle</label>
+                <input id="site-shop-subtitle" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-shop-hero-img">Shop Hero Image URL</label>
+                <input id="site-shop-hero-img" maxlength="2000">
+              </div>
+            </div>
+
+            <h3>Blog Page</h3>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="site-blog-title">Blog Page Title</label>
+                <input id="site-blog-title" maxlength="1200">
+              </div>
+              <div class="form-row">
+                <label for="site-blog-subtitle">Blog Page Subtitle</label>
+                <input id="site-blog-subtitle" maxlength="2000">
+              </div>
+              <div class="form-row">
+                <label for="site-blog-hero-img">Blog Hero Image URL</label>
+                <input id="site-blog-hero-img" maxlength="2000">
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Website Content</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="directories" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Citations</p>
+          <h2>Directory Tracker</h2>
+          <p class="dash-helper">Track listing status, URLs, and login notes for each citation platform.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Directory Tracker</h3>
+          <ol class="instruction-steps">
+            <li>Add one row per platform (Google Business Profile, Bing Places, BBB, Yelp, etc.).</li>
+            <li>Paste the live listing URL so your team can open it quickly.</li>
+            <li>Set status: <strong>Live</strong>, <strong>Pending</strong>, or <strong>Needs Update</strong>.</li>
+            <li>Add login notes so updates are easy for your team.</li>
+            <li>Click <strong>Save Directory</strong> after each platform entry.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="directory-form" class="control-form">
+            <input id="directory-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="directory-name">Directory</label>
+                <input id="directory-name" required>
+              </div>
+              <div class="form-row">
+                <label for="directory-url">Listing URL</label>
+                <input id="directory-url" placeholder="https://...">
+              </div>
+              <div class="form-row">
+                <label for="directory-status">Status</label>
+                <select id="directory-status">
+                  <option value="live">Live</option>
+                  <option value="pending">Pending</option>
+                  <option value="needs_update">Needs Update</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="directory-updated">Last Updated (note)</label>
+                <input id="directory-updated" placeholder="Jan 2026 refresh">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="directory-login">Login / Notes</label>
+              <textarea id="directory-login" rows="2" maxlength="800"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Directory</button>
+              <button id="directory-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>URL</th>
+                <th>Last Sync</th>
+                <th>Notes</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="directory-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="reviews" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Proof</p>
+          <h2>Reviews Manager</h2>
+          <p class="dash-helper">Approve and organize testimonials by city and service so they can be reused in sales pages.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Reviews</h3>
+          <ol class="instruction-steps">
+            <li>Add reviewer name, source (Google, Yelp, etc.), and quote.</li>
+            <li>Set star rating from 1 to 5.</li>
+            <li>Add city and service so reviews match the right pages.</li>
+            <li>Keep <strong>Approved</strong> checked to show this review publicly.</li>
+            <li>Click <strong>Save Review</strong> and confirm it appears in the table.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="review-form" class="control-form">
+            <input id="review-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="review-name">Reviewer</label>
+                <input id="review-name" required>
+              </div>
+              <div class="form-row">
+                <label for="review-source">Source</label>
+                <input id="review-source" placeholder="Google">
+              </div>
+              <div class="form-row">
+                <label for="review-rating">Rating (1-5)</label>
+                <input id="review-rating" type="number" min="1" max="5" step="1" value="5">
+              </div>
+              <div class="form-row checkbox-row">
+                <label for="review-approved">Approved</label>
+                <input id="review-approved" type="checkbox" checked>
+              </div>
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="review-city">City</label>
+                <input id="review-city" placeholder="Chicago">
+              </div>
+              <div class="form-row">
+                <label for="review-service">Service</label>
+                <input id="review-service" placeholder="Emergency Repair">
+              </div>
+              <div class="form-row">
+                <label for="review-media">Screenshot / Video URL</label>
+                <input id="review-media">
+              </div>
+              <div></div>
+            </div>
+            <div class="form-row">
+              <label for="review-quote">Quote</label>
+              <textarea id="review-quote" rows="3" maxlength="900"></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Review</button>
+              <button id="review-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Reviewer</th>
+                <th>Source</th>
+                <th>Rating</th>
+                <th>City</th>
+                <th>Approved</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="review-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+      <section id="maintenance" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Recurring Revenue</p>
+          <h2>Maintenance Plans</h2>
+          <p class="dash-helper">Manage plan tiers and members to grow recurring service revenue.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Maintenance Plans</h3>
+          <ol class="instruction-steps">
+            <li>First create the plan tier (name, price, billing, features), then save it.</li>
+            <li>Next add members and attach each member to a plan.</li>
+            <li>Update member status as active, past due, or cancelled.</li>
+            <li>Use <strong>Export Members CSV</strong> for billing or accounting reports.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h3>Plan Tiers</h3>
+          <form id="plan-form" class="control-form">
+            <input id="plan-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="plan-name">Plan Name</label>
+                <input id="plan-name" required>
+              </div>
+              <div class="form-row">
+                <label for="plan-tier">Tier</label>
+                <input id="plan-tier" placeholder="Gold">
+              </div>
+              <div class="form-row">
+                <label for="plan-price">Price ($)</label>
+                <input id="plan-price" type="number" min="0" step="1">
+              </div>
+              <div class="form-row">
+                <label for="plan-billing">Billing Cycle</label>
+                <select id="plan-billing">
+                  <option value="monthly">Monthly</option>
+                  <option value="quarterly">Quarterly</option>
+                  <option value="annual">Annual</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="plan-status">Status</label>
+                <select id="plan-status">
+                  <option value="active">Active</option>
+                  <option value="paused">Paused</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="plan-features">Features (comma list)</label>
+                <input id="plan-features" placeholder="Quarterly visits,Priority response,Filter changes">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Plan</button>
+              <button id="plan-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Plan</th>
+                <th>Tier</th>
+                <th>Price</th>
+                <th>Billing</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="plan-table-body"></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h3>Plan Members</h3>
+          <form id="member-form" class="control-form">
+            <input id="member-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="member-name">Contact Name</label>
+                <input id="member-name" required>
+              </div>
+              <div class="form-row">
+                <label for="member-email">Email</label>
+                <input id="member-email" type="email">
+              </div>
+              <div class="form-row">
+                <label for="member-company">Company</label>
+                <input id="member-company">
+              </div>
+              <div class="form-row">
+                <label for="member-plan">Plan</label>
+                <select id="member-plan"></select>
+              </div>
+            </div>
+            <div class="grid-3">
+              <div class="form-row">
+                <label for="member-start">Start Date</label>
+                <input id="member-start" type="date">
+              </div>
+              <div class="form-row">
+                <label for="member-status">Status</label>
+                <select id="member-status">
+                  <option value="active">Active</option>
+                  <option value="past_due">Past Due</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="member-notes">Notes</label>
+                <input id="member-notes">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Member</button>
+              <button id="member-reset" type="button" class="button button-ghost button-small">Clear</button>
+              <button id="export-members-btn" type="button" class="button button-ghost button-small">Export Members CSV</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Plan</th>
+                <th>Status</th>
+                <th>Start</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="member-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="seo" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">SEO Performance</p>
+          <h2>SEO Monitor</h2>
+          <p class="dash-helper">Track structured data, sitemap status, and local SEO readiness.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use SEO Monitor</h3>
+          <ol class="instruction-steps">
+            <li>Check <strong>Schema Status</strong> to confirm structured data is active on all pages.</li>
+            <li>Verify <strong>Sitemap</strong> and <strong>Robots.txt</strong> are accessible.</li>
+            <li>Review <strong>Meta Tags</strong> to ensure Open Graph and Twitter Cards are set.</li>
+            <li>Monitor <strong>Local SEO</strong> readiness for Google Business Profile integration.</li>
+          </ol>
+        </div>
+        
+        <div class="kpi-grid kpi-grid-4">
+          <article class="kpi-card">
+            <span>Pages with Schema</span>
+            <strong>5</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Sitemap URLs</span>
+            <strong>9</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Open Graph Tags</span>
+            <strong>✓ Active</strong>
+          </article>
+          <article class="kpi-card">
+            <span>Local Business Schema</span>
+            <strong>✓ Active</strong>
+          </article>
+        </div>
+
+        <div class="panel">
+          <h3>Schema Validation</h3>
+          <div class="seo-check-grid">
+            <div class="seo-check-item">
+              <strong>✓ LocalBusiness Schema</strong>
+              <p>Active on index.html with complete NAP data</p>
+            </div>
+            <div class="seo-check-item">
+              <strong>✓ Organization Schema</strong>
+              <p>Contact point and social profiles configured</p>
+            </div>
+            <div class="seo-check-item">
+              <strong>✓ Service Schema</strong>
+              <p>Ready for service pages</p>
+            </div>
+            <div class="seo-check-item">
+              <strong>✓ Review Schema</strong>
+              <p>Structured data for testimonials</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Technical SEO Status</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Status</th>
+                <th>URL</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sitemap.xml</td>
+                <td><span class="status-chip status-live">Active</span></td>
+                <td><a href="/sitemap.xml" target="_blank">/sitemap.xml</a></td>
+                <td>Dynamic generation via server</td>
+              </tr>
+              <tr>
+                <td>Robots.txt</td>
+                <td><span class="status-chip status-live">Active</span></td>
+                <td><a href="/robots.txt" target="_blank">/robots.txt</a></td>
+                <td>Blocks /api/ and /backoffice.html</td>
+              </tr>
+              <tr>
+                <td>Canonical URLs</td>
+                <td><span class="status-chip status-live">Active</span></td>
+                <td>All pages</td>
+                <td>Set on index, shop, blog</td>
+              </tr>
+              <tr>
+                <td>Open Graph</td>
+                <td><span class="status-chip status-live">Active</span></td>
+                <td>All pages</td>
+                <td>Images, titles, descriptions set</td>
+              </tr>
+              <tr>
+                <td>Twitter Cards</td>
+                <td><span class="status-chip status-live">Active</span></td>
+                <td>All pages</td>
+                <td>Summary large image format</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h3>Local SEO Checklist</h3>
+          <ul class="seo-checklist">
+            <li>✓ Business name, address, phone (NAP) in schema</li>
+            <li>✓ Geographic coordinates for Chicago location</li>
+            <li>✓ Service area cities defined (Chicago, Naperville, Schaumburg)</li>
+            <li>✓ Aggregate rating schema (4.9 stars, 400 reviews)</li>
+            <li>✓ Opening hours set to 24/7 emergency service</li>
+            <li>→ Connect Google Business Profile in Integrations</li>
+            <li>→ Submit to Bing Places and local directories</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <h3>SEO Tools</h3>
+          <div class="form-actions">
+            <a href="https://search.google.com/test/rich-results" target="_blank" class="button button-small">Test Rich Results</a>
+            <a href="https://search.google.com/search-console" target="_blank" class="button button-small">Google Search Console</a>
+            <a href="https://www.bing.com/webmasters" target="_blank" class="button button-small">Bing Webmaster Tools</a>
+            <a href="/sitemap.xml" target="_blank" class="button button-ghost button-small">View Sitemap</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Business Settings</p>
+          <h2>Company Profile and Tracking</h2>
+          <p class="dash-helper">Keep phone, address, and tracking IDs updated so analytics and campaigns remain accurate.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Settings</h3>
+          <ol class="instruction-steps">
+            <li>Fill in business name, phone, email, hours, and address exactly as customers should see it.</li>
+            <li>Add social links and tracking tags (Google and Bing).</li>
+            <li>Turn on lead notifications and add recipient emails.</li>
+            <li>Click <strong>Save Settings</strong>, then click <strong>Send Test Email</strong> to confirm notifications work.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="settings-form" class="control-form">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="settings-business">Business Name</label>
+                <input id="settings-business" required>
+              </div>
+              <div class="form-row">
+                <label for="settings-phone">Phone</label>
+                <input id="settings-phone">
+              </div>
+              <div class="form-row">
+                <label for="settings-email">Email</label>
+                <input id="settings-email" type="email">
+              </div>
+              <div class="form-row">
+                <label for="settings-hours">Service Hours</label>
+                <input id="settings-hours">
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-row">
+                <label for="settings-address">Address</label>
+                <input id="settings-address">
+              </div>
+              <div class="form-row">
+                <label for="settings-logo">Logo URL</label>
+                <input id="settings-logo">
+              </div>
+            </div>
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="settings-facebook">Facebook</label>
+                <input id="settings-facebook">
+              </div>
+              <div class="form-row">
+                <label for="settings-instagram">Instagram</label>
+                <input id="settings-instagram">
+              </div>
+              <div class="form-row">
+                <label for="settings-linkedin">LinkedIn</label>
+                <input id="settings-linkedin">
+              </div>
+              <div class="form-row">
+                <label for="settings-google-tag">Google Tag ID</label>
+                <input id="settings-google-tag">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="settings-bing-tag">Bing Tracking ID</label>
+              <input id="settings-bing-tag">
+            </div>
+            <h3>Lead Email Notifications</h3>
+            <div class="grid-4">
+              <label class="form-row checkbox-row" for="settings-notify-enabled">
+                Enable Lead Notifications
+                <input id="settings-notify-enabled" type="checkbox">
+              </label>
+              <label class="form-row checkbox-row" for="settings-notify-include-business-email">
+                Send To Business Email
+                <input id="settings-notify-include-business-email" type="checkbox">
+              </label>
+              <div class="form-row">
+                <label for="settings-notify-subject-prefix">Email Subject Prefix</label>
+                <input id="settings-notify-subject-prefix" maxlength="120" placeholder="New Lead">
+              </div>
+              <div class="form-row">
+                <label for="settings-notify-recipients">Extra Recipient Emails</label>
+                <input id="settings-notify-recipients" maxlength="2000" placeholder="owner@company.com, manager@company.com">
+              </div>
+            </div>
+            <p class="dash-helper">To send emails, set SMTP server values on the server (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, optional `SMTP_FROM`).</p>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save Settings</button>
+              <button id="test-notification-btn" type="button" class="button button-ghost button-small">Send Test Email</button>
+            </div>
+            <p id="settings-notification-status" class="form-status form-status-info" role="status" aria-live="polite">Lead notification status: not tested.</p>
+          </form>
+        </div>
+      </section>
+
+      <section id="users" class="dash-section">
+        <div class="section-heading">
+          <p class="eyebrow">Access</p>
+          <h2>Roles and Team Permissions</h2>
+          <p class="dash-helper">Set who can edit marketing, leads, and admin settings.</p>
+        </div>
+        <div class="instruction-card" role="note">
+          <h3>How to use Team Roles</h3>
+          <ol class="instruction-steps">
+            <li>Add each team member with name and email.</li>
+            <li>Choose role: <strong>Admin</strong>, <strong>Manager</strong>, <strong>Marketing</strong>, or <strong>Tech</strong>.</li>
+            <li>Set status to <strong>Active</strong> for current staff only.</li>
+            <li>Click <strong>Save User</strong> and verify access in the table.</li>
+          </ol>
+        </div>
+        <div class="panel">
+          <form id="user-form" class="control-form">
+            <input id="user-id" type="hidden">
+            <div class="grid-4">
+              <div class="form-row">
+                <label for="user-name">Name</label>
+                <input id="user-name" required>
+              </div>
+              <div class="form-row">
+                <label for="user-email">Email</label>
+                <input id="user-email" type="email" required>
+              </div>
+              <div class="form-row">
+                <label for="user-role">Role</label>
+                <select id="user-role">
+                  <option value="admin">Admin</option>
+                  <option value="manager">Manager</option>
+                  <option value="tech">Tech</option>
+                  <option value="marketing">Marketing</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="user-status">Status</label>
+                <select id="user-status">
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="button button-small">Save User</button>
+              <button id="user-reset" type="button" class="button button-ghost button-small">Clear</button>
+            </div>
+          </form>
+        </div>
+        <div class="panel panel-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="user-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

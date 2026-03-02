@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-02-28T19:47:34.873Z",
+  "lastSync": "2026-02-28T16:44:33.948Z",
+  "activeRole": "admin",
+  "channels": [
+    {
+      "id": "chn_6e0fcda5-5c53-4780-810d-2a7582fccfa5",
+      "name": "Yahoo Ads",
+      "type": "ads",
+      "status": "active",
+      "spend": 0,
+      "clicks": 0,
+      "leads": 0,
+      "bookings": 0
+    },
+    {
+      "id": "chn_google_ads",
+      "name": "Google Ads",
+      "type": "ads",
+      "status": "paused",
+      "spend": 2100,
+      "clicks": 980,
+      "leads": 71,
+      "bookings": 33
+    },
+    {
+      "id": "chn_bing_ads",
+      "name": "Bing Ads",
+      "type": "ads",
+      "status": "active",
+      "spend": 700,
+      "clicks": 290,
+      "leads": 19,
+      "bookings": 8
+    },
+    {
+      "id": "chn_gbp",
+      "name": "Google Business Profile",
+      "type": "listing",
+      "status": "active",
+      "spend": 0,
+      "clicks": 410,
+      "leads": 34,
+      "bookings": 17
+    },
+    {
+      "id": "chn_yelp",
+      "name": "Yelp",
+      "type": "listing",
+      "status": "testing",
+      "spend": 280,
+      "clicks": 120,
+      "leads": 9,
+      "bookings": 4
+    },
+    {
+      "id": "chn_facebook",
+      "name": "Facebook",
+      "type": "social",
+      "status": "paused",
+      "spend": 350,
+      "clicks": 140,
+      "leads": 7,
+      "bookings": 3
+    }
+  ],
+  "directories": [
+    {
+      "id": "dir_b380c7df-79fd-49fc-b2bf-4f8f3a607626",
+      "name": "EZlocal",
+      "status": "needs_update",
+      "url": "https://www.ezlocal.com/",
+      "loginNotes": "",
+      "manualUpdatedAt": "Updated 2026-02-28 via Integration Hub",
+      "lastSyncedAt": "2026-02-28T16:52:30.877Z"
+    },
+    {
+      "id": "dir_f11cdcd0-9aef-439a-aef8-e48e66e05c72",
+      "name": "Google Maps",
+      "status": "live",
+      "url": "https://www.google.com/business/",
+      "loginNotes": "",
+      "manualUpdatedAt": "Updated 2026-02-28 via Integration Hub",
+      "lastSyncedAt": null
+    },
+    {
+      "id": "dir_apple_maps",
+      "name": "Apple Maps",
+      "status": "live",
+      "url": "https://register.apple.com/placesonmaps/",
+      "loginNotes": "",
+      "manualUpdatedAt": "Updated 2026-02-28 via Integration Hub",
+      "lastSyncedAt": "2026-02-28T16:51:40.819Z"
+    },
+    {
+      "id": "dir_bing",
+      "name": "Bing",
+      "status": "live",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    },
+    {
+      "id": "dir_yelp",
+      "name": "Yelp",
+      "status": "live",
+      "url": "https://biz.yelp.com/",
+      "loginNotes": "",
+      "manualUpdatedAt": "Updated 2026-02-28 via Integration Hub",
+      "lastSyncedAt": "2026-02-28T16:51:40.831Z"
+    },
+    {
+      "id": "dir_nextdoor",
+      "name": "Nextdoor",
+      "status": "live",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    },
+    {
+      "id": "dir_foursquare",
+      "name": "Foursquare",
+      "status": "needs_update",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    },
+    {
+      "id": "dir_citysearch",
+      "name": "Citysearch",
+      "status": "live",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    },
+    {
+      "id": "dir_bbb",
+      "name": "BBB",
+      "status": "live",
+      "url": "https://www.bbb.org/",
+      "loginNotes": "",
+      "manualUpdatedAt": "Updated 2026-02-28 via Integration Hub",
+      "lastSyncedAt": "2026-02-28T16:51:40.825Z"
+    },
+    {
+      "id": "dir_mapquest",
+      "name": "MapQuest",
+      "status": "live",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    },
+    {
+      "id": "dir_yellow_pages",
+      "name": "Yellow Pages",
+      "status": "live",
+      "url": "",
+      "loginNotes": "",
+      "manualUpdatedAt": "",
+      "lastSyncedAt": "2026-02-28T16:44:33.948Z"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": "cmp_emergency_calls",
+      "name": "Emergency Repair Calls",
+      "platform": "Google Ads",
+      "budget": 1600,
+      "objective": "calls",
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-28",
+      "status": "active"
+    },
+    {
+      "id": "cmp_maintenance_plan",
+      "name": "Maintenance Plan Promo",
+      "platform": "Bing Ads",
+      "budget": 850,
+      "objective": "forms",
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-28",
+      "status": "planned"
+    }
+  ],
+  "leads": [],
+  "locations": [
+    {
+      "id": "loc_ae6d02fd-57b5-4fb1-973d-048af47704be",
+      "city": "Chicago",
+      "slug": "chicago",
+      "intro": "Commercial HVAC and refrigeration support across Chicago business districts.",
+      "servicesSummary": "Repair, maintenance, emergency response, and replacement planning.",
+      "testimonial": "Fast response and clear communication.",
+      "imageUrl": "",
+      "mapNote": "Downtown and surrounding service radius",
+      "published": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    },
+    {
+      "id": "loc_9bd7bb53-d14d-4ef6-bc5a-b8a8467ecf49",
+      "city": "Naperville",
+      "slug": "naperville",
+      "intro": "Commercial HVAC support for offices, retail, and food operations in Naperville.",
+      "servicesSummary": "Preventive maintenance and emergency dispatch.",
+      "testimonial": "",
+      "imageUrl": "",
+      "mapNote": "",
+      "published": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    },
+    {
+      "id": "loc_2d249a25-190c-4dc8-9457-8f0d1dcb93cc",
+      "city": "Schaumburg",
+      "slug": "schaumburg",
+      "intro": "HVAC and refrigeration support for Schaumburg commercial properties.",
+      "servicesSummary": "Service contracts, repairs, and equipment upgrades.",
+      "testimonial": "",
+      "imageUrl": "",
+      "mapNote": "",
+      "published": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    }
+  ],
+  "servicePages": [
+    {
+      "id": "svc_d471055a-8cd8-4c31-bfd2-d55f5c791d32",
+      "name": "Commercial HVAC Repair",
+      "slug": "commercial-hvac-repair",
+      "description": "Rapid diagnostics and repair for commercial systems.",
+      "pricingNote": "Custom quote based on equipment and access.",
+      "imageUrl": "",
+      "active": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    },
+    {
+      "id": "svc_75349874-ad24-4934-829a-08a2e77ded17",
+      "name": "Commercial Refrigeration",
+      "slug": "commercial-refrigeration",
+      "description": "Walk-in cooler, freezer, and ice machine support.",
+      "pricingNote": "Emergency and scheduled options available.",
+      "imageUrl": "",
+      "active": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    },
+    {
+      "id": "svc_e1322eb3-63bb-4284-af66-7ac84bfa9a3e",
+      "name": "Preventive Maintenance",
+      "slug": "preventive-maintenance",
+      "description": "Recurring maintenance plans for uptime and efficiency.",
+      "pricingNote": "Tiered monthly, quarterly, and annual plans.",
+      "imageUrl": "",
+      "active": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    }
+  ],
+  "promotions": [
+    {
+      "id": "pro_96bcd3e6-1e3b-46ce-9632-e188987761a7",
+      "title": "free filter change with service",
+      "description": "",
+      "ctaText": "book now",
+      "startDate": "2026-02-28",
+      "endDate": "2026-02-28",
+      "status": "active",
+      "bannerImage": "",
+      "pageTargets": [],
+      "cityTargets": [
+        "chicago"
+      ]
+    },
+    {
+      "id": "pro_aee6c82b-1306-4199-9616-53fdbbdf35a9",
+      "title": "Spring Commercial Tune-Up",
+      "description": "Seasonal HVAC performance checks for commercial properties.",
+      "ctaText": "Book Inspection",
+      "startDate": "2026-02-27",
+      "endDate": "2026-03-29",
+      "status": "active",
+      "bannerImage": "",
+      "pageTargets": [
+        "/services/",
+        "/locations/chicago/"
+      ],
+      "cityTargets": [
+        "Chicago",
+        "Naperville"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "pst_d20ae227-eeca-4562-b9a9-f3719d072360",
+      "title": "Walk-In Cooler Not Holding Temperature",
+      "slug": "walk-in-cooler-not-holding-temp",
+      "category": "Troubleshooting",
+      "status": "published",
+      "publishDate": "2026-02-27",
+      "imageUrl": "",
+      "metaTitle": "Walk-In Cooler Not Holding Temperature | Chicago Guide",
+      "metaDescription": "Troubleshooting checklist for commercial cooler temperature issues.",
+      "excerpt": "Common issues to check before product loss escalates."
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_79416081-67d7-4746-a69d-ed35adcf0e03",
+      "reviewerName": "Operations Manager",
+      "source": "Google",
+      "rating": 5,
+      "city": "Chicago",
+      "service": "Emergency Repair",
+      "quote": "Great response time and clear updates throughout the job.",
+      "mediaUrl": "",
+      "approved": true,
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    }
+  ],
+  "maintenancePlans": [
+    {
+      "id": "pln_a4cfcdb3-e52f-402d-b840-13afafe5d715",
+      "name": "Essential Care",
+      "tier": "Silver",
+      "price": 349,
+      "billingCycle": "monthly",
+      "features": [
+        "Quarterly inspection",
+        "Priority scheduling"
+      ],
+      "status": "active",
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    },
+    {
+      "id": "pln_dca73bb7-845f-4262-afbf-a2a80c896d24",
+      "name": "Performance Care",
+      "tier": "Gold",
+      "price": 699,
+      "billingCycle": "monthly",
+      "features": [
+        "Monthly checks",
+        "Priority response",
+        "Filter program"
+      ],
+      "status": "active",
+      "updatedAt": "2026-02-28T05:08:08.413Z"
+    }
+  ],
+  "maintenanceMembers": [
+    {
+      "id": "mem_69d8d097-9382-416c-93fd-835df9a7601b",
+      "name": "Jordan Smith",
+      "email": "ops@acpropertygroup.com",
+      "company": "AC Property Group",
+      "planId": "pln_a4cfcdb3-e52f-402d-b840-13afafe5d715",
+      "startDate": "2026-02-27",
+      "status": "active",
+      "notes": "Portfolio of 3 sites"
+    }
+  ],
+  "settings": {
+    "businessName": "Elite Quality HVAC",
+    "phone": "(312) 555-0119",
+    "email": "service@elitequalityhvac.com",
+    "address": "747 S Dixie Ave, Chicago, IL",
+    "serviceHours": "24/7 emergency dispatch",
+    "logoUrl": "",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "linkedin": ""
+    },
+    "tracking": {
+      "googleTagId": "",
+      "bingTagId": ""
+    },
+    "notifications": {
+      "enabled": false,
+      "includeBusinessEmail": true,
+      "recipients": [],
+      "subjectPrefix": "New Lead"
+    }
+  },
+  "siteContent": {
+    "hero": {
+      "eyebrow": "Welcome to Elite Quality HVAC and Refrigeration",
+      "title": "Make your building comfort and uptime your competitive edge.",
+      "subtitle": "We help Chicago businesses stay open with dependable commercial HVAC repair, preventive maintenance, and refrigeration service.",
+      "backgroundImage": "/Resources/images/unsplash-hero-home.jpg"
+    },
+    "services": {
+      "heading": "Commercial HVAC, refrigeration, and maintenance built for business uptime.",
+      "card1Image": "/Resources/images/unsplash-service-1.jpg",
+      "card2Image": "/Resources/images/unsplash-service-2.jpg",
+      "card3Image": "/Resources/images/unsplash-service-3.jpg",
+      "card4Image": "/Resources/images/unsplash-service-4.jpg"
+    },
+    "expertise": {
+      "heading": "Heating, cooling, and refrigeration expertise for Chicago business owners.",
+      "image": "/Resources/images/unsplash-expertise.jpg"
+    },
+    "promo": {
+      "title": "Quality HVAC services for demanding facilities.",
+      "description": "From urgent breakdowns to planned system upgrades, we deliver options that fit your timeline and budget.",
+      "backgroundImage": "/Resources/images/unsplash-promo.jpg"
+    },
+    "quickLinks": {
+      "card1Image": "/Resources/images/unsplash-quick-1.jpg",
+      "card2Image": "/Resources/images/unsplash-quick-2.jpg",
+      "card3Image": "/Resources/images/unsplash-quick-3.jpg"
+    },
+    "shop": {
+      "title": "Shop and Knowledge Center",
+      "subtitle": "Browse offers and helpful HVAC resources in one place.",
+      "heroImage": "/Resources/images/unsplash-shop-hero.jpg"
+    },
+    "blog": {
+      "title": "HVAC Blog and Resources",
+      "subtitle": "Maintenance guides, troubleshooting, and efficiency best practices.",
+      "heroImage": "/Resources/images/unsplash-blog-hero.jpg"
+    }
+  },
+  "users": [
+    {
+      "id": "usr_e48adb73-6301-4d5c-99a0-b47cd4d26a2f",
+      "name": "Owner Admin",
+      "email": "admin@elitequalityhvac.com",
+      "role": "admin",
+      "status": "active"
+    },
+    {
+      "id": "usr_fdc917f4-4d10-49a2-bc26-a05bd8edabf2",
+      "name": "Ops Manager",
+      "email": "manager@elitequalityhvac.com",
+      "role": "manager",
+      "status": "active"
+    },
+    {
+      "id": "usr_862e1ad2-32aa-4fdc-a12f-e54587006dd0",
+      "name": "Field Tech",
+      "email": "tech@elitequalityhvac.com",
+      "role": "tech",
+      "status": "active"
+    },
+    {
+      "id": "usr_b0a7448b-d723-420d-950a-dd961a87cdd3",
+      "name": "Marketing Lead",
+      "email": "marketing@elitequalityhvac.com",
+      "role": "marketing",
+      "status": "active"
+    }
+  ],
+  "activity": [
+    {
+      "id": "act_535c1433-fb66-4194-901d-1b06853ae0f6",
+      "createdAt": "2026-02-28T17:24:18.155Z",
+      "type": "settings",
+      "module": "settings",
+      "message": "Website content and media updated.",
+      "meta": {}
+    },
+    {
+      "id": "act_2829a7fc-b410-4c74-8de4-4515babae430",
+      "createdAt": "2026-02-28T17:24:18.141Z",
+      "type": "settings",
+      "module": "settings",
+      "message": "Website content and media updated.",
+      "meta": {}
+    },
+    {
+      "id": "act_6bbdf90a-80a9-450d-9142-b6e4d84a82cf",
+      "createdAt": "2026-02-28T16:58:13.547Z",
+      "type": "marketing",
+      "module": "promotions",
+      "message": "Promotion added: free filter change with service",
+      "meta": {
+        "promotionId": "pro_96bcd3e6-1e3b-46ce-9632-e188987761a7"
+      }
+    },
+    {
+      "id": "act_4cea7aca-fdfa-47f1-ad67-a550fa96ec42",
+      "createdAt": "2026-02-28T16:52:30.877Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory updated: EZlocal",
+      "meta": {
+        "directoryId": "dir_b380c7df-79fd-49fc-b2bf-4f8f3a607626"
+      }
+    },
+    {
+      "id": "act_7da9b16f-01d4-4c33-9472-acf33ec8e201",
+      "createdAt": "2026-02-28T16:52:29.052Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory updated: EZlocal",
+      "meta": {
+        "directoryId": "dir_b380c7df-79fd-49fc-b2bf-4f8f3a607626"
+      }
+    },
+    {
+      "id": "act_e49abdfb-b738-4f99-a763-5b6ffe0e3766",
+      "createdAt": "2026-02-28T16:52:27.79Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory added: EZlocal",
+      "meta": {
+        "directoryId": "dir_b380c7df-79fd-49fc-b2bf-4f8f3a607626"
+      }
+    },
+    {
+      "id": "act_558d1b5e-4930-4fd9-ac0a-e6cbb60b0868",
+      "createdAt": "2026-02-28T16:52:19.019Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel updated: Google Ads",
+      "meta": {
+        "channelId": "chn_google_ads"
+      }
+    },
+    {
+      "id": "act_2e507d80-cec6-4289-ad1c-756765110f63",
+      "createdAt": "2026-02-28T16:52:14.382Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel updated: Google Ads",
+      "meta": {
+        "channelId": "chn_google_ads"
+      }
+    },
+    {
+      "id": "act_d6f389af-46ce-4b32-9d41-259311b05387",
+      "createdAt": "2026-02-28T16:51:40.831Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory updated: Yelp",
+      "meta": {
+        "directoryId": "dir_yelp"
+      }
+    },
+    {
+      "id": "act_33d5fb25-cf45-43c2-9cc1-5506535b9fb3",
+      "createdAt": "2026-02-28T16:51:40.825Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory updated: BBB",
+      "meta": {
+        "directoryId": "dir_bbb"
+      }
+    },
+    {
+      "id": "act_2079dc09-dcd4-4097-a1f1-2d2f89cef2f0",
+      "createdAt": "2026-02-28T16:51:40.819Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory updated: Apple Maps",
+      "meta": {
+        "directoryId": "dir_apple_maps"
+      }
+    },
+    {
+      "id": "act_ea8101a7-acf9-43be-81eb-6cae4a03beb7",
+      "createdAt": "2026-02-28T16:51:40.813Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory added: Google Maps",
+      "meta": {
+        "directoryId": "dir_f11cdcd0-9aef-439a-aef8-e48e66e05c72"
+      }
+    },
+    {
+      "id": "act_7ece5684-10a9-42ed-8ae5-e00413119563",
+      "createdAt": "2026-02-28T16:51:40.788Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel added: Yahoo Ads",
+      "meta": {
+        "channelId": "chn_6e0fcda5-5c53-4780-810d-2a7582fccfa5"
+      }
+    },
+    {
+      "id": "act_478973a6-61fa-4f1b-ad39-d0e4937ef9bd",
+      "createdAt": "2026-02-28T16:51:40.781Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel updated: Bing Ads",
+      "meta": {
+        "channelId": "chn_bing_ads"
+      }
+    },
+    {
+      "id": "act_90b0eca1-a9bc-414e-930b-5fa369af51e6",
+      "createdAt": "2026-02-28T16:51:40.773Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel updated: Google Ads",
+      "meta": {
+        "channelId": "chn_google_ads"
+      }
+    },
+    {
+      "id": "act_6237619e-79ab-40b3-9508-7bc32a1a4a29",
+      "createdAt": "2026-02-28T16:51:20.342Z",
+      "type": "marketing",
+      "module": "channels",
+      "message": "Channel updated: Google Ads",
+      "meta": {
+        "channelId": "chn_google_ads"
+      }
+    },
+    {
+      "id": "act_5227f293-69fe-494d-a623-51a55b3aebca",
+      "createdAt": "2026-02-28T16:44:33.948Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory sync completed. Promoted 0 listings.",
+      "meta": {
+        "promoted": 0
+      }
+    },
+    {
+      "id": "act_5a8d6c43-ff60-4b28-84b5-0d2e045831e7",
+      "createdAt": "2026-02-28T16:44:33.414Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory sync completed. Promoted 0 listings.",
+      "meta": {
+        "promoted": 0
+      }
+    },
+    {
+      "id": "act_034c8d69-d3fe-432a-b365-6065aebec41a",
+      "createdAt": "2026-02-28T16:44:26.794Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory sync completed. Promoted 2 listings.",
+      "meta": {
+        "promoted": 2
+      }
+    },
+    {
+      "id": "act_2bada913-dd3a-4ecf-9028-b51902ca95b7",
+      "createdAt": "2026-02-28T05:14:26.106Z",
+      "type": "directory",
+      "module": "directories",
+      "message": "Directory removed: dir_google_maps",
+      "meta": {
+        "directoryId": "dir_google_maps"
+      }
+    },
+    {
+      "id": "act_97dd7062-46cd-403a-8039-cca1796ca10f",
+      "createdAt": "2026-02-28T05:08:08.413Z",
+      "type": "system",
+      "module": "overview",
+      "message": "Back office initialized."
+    }
+  ]
+}
+
