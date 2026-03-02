@@ -5,17 +5,23 @@
       href: "/"
     },
     {
-      label: "Services",
-      href: "/services/",
+      label: "Commercial HVAC",
+      href: "/commercial-hvac/"
+    },
+    {
+      label: "Commercial Refrigeration",
+      href: "/commercial-refrigeration/"
+    },
+    {
+      label: "Service Area",
+      href: "/service-area/",
       children: [
-        { label: "HVAC/Refrigeration", href: "/services/" },
-        { label: "Electrical", href: "/services/" },
-        { label: "Preventive Maintenance", href: "/services/preventive-maintenance-plans/" }
+        { label: "Chicago, IL", href: "/chicago--il/" }
       ]
     },
     {
-      label: "Reviews",
-      href: "/reviews/"
+      label: "Contact",
+      href: "/contact/"
     }
   ];
 
