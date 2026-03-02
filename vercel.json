@@ -4,6 +4,70 @@
     {
       "src": "server.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "*.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "app.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "dashboard.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "about/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "contact/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "industries/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "locations/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "reviews/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "services/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "scripts/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Style/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Pages/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Resources/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "robots.txt",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "sitemap.xml",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
