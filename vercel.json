@@ -26,6 +26,26 @@
       "use": "@vercel/static"
     },
     {
+      "src": "home/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "commercial-hvac/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "commercial-refrigeration/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "service-area/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "chicago--il/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "contact/**",
       "use": "@vercel/static"
     },
@@ -47,6 +67,10 @@
     },
     {
       "src": "scripts/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "Scripts/**",
       "use": "@vercel/static"
     },
     {

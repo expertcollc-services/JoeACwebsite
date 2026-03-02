@@ -1475,19 +1475,12 @@ app.use((req, res, next) => {
 });
 
 const SINGLE_PAGE_REDIRECTS = [
-  { prefix: "/services", target: "/#services" },
   { prefix: "/equipment", target: "/#services" },
   { prefix: "/projects", target: "/#reviews" },
-  { prefix: "/resources", target: "/#about" },
-  { prefix: "/industries", target: "/#services" },
-  { prefix: "/locations", target: "/#services" },
-  { prefix: "/reviews", target: "/#reviews" },
-  { prefix: "/about", target: "/#about" },
-  { prefix: "/contact", target: "/#contact" }
 ];
 
 SINGLE_PAGE_REDIRECTS.forEach((rule) => {
-  app.get(new RegExp(`^${rule.prefix}(?:\\/.*)?$`, "i"), (_req, res) => {
+  app.get(new RegExp(`^${rule.prefix}(?:\\/.*)?$`), (_req, res) => {
     res.redirect(302, rule.target);
   });
 });
@@ -2368,4 +2361,3 @@ if (process.env.VERCEL) {
       process.exit(1);
     });
 }
-
