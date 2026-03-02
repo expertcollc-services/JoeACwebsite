@@ -8,13 +8,19 @@
   ],
   "routes": [
     {
+      "src": "/sitemap.xml",
+      "dest": "/server.js"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/server.js"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "/server.js"
     }
-  ],
-  "functions": {
-    "server.js": {
-      "includeFiles": "**/*"
-    }
-  }
+  ]
 }
