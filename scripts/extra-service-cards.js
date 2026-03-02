@@ -27,7 +27,8 @@
     style.id = "ac-extra-service-cards-style";
     style.textContent = [
       "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:16px!important;overflow:visible!important;}",
-      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 64px)/5)!important;max-width:calc((100% - 64px)/5)!important;flex:0 0 calc((100% - 64px)/5)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;}",
+      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 64px)/5)!important;max-width:calc((100% - 64px)/5)!important;flex:0 0 calc((100% - 64px)/5)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;display:flex!important;opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
+      "[id='6c385d1b'] > .flex-element.group [data-auto='flex-element-widget-wrapper']{opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
       "[id='6c385d1b'] > .flex-element.group [data-widget-type='link']{width:100%!important;max-width:100%!important;height:50px!important;}",
       "[id='6c385d1b'] > .flex-element.group a.dmButtonLink{width:100%!important;}",
       "[id='6c385d1b'] > .flex-element.group .text{white-space:nowrap;}",

@@ -5,15 +5,10 @@
     "/Resources/images/york-full-color-logo-badb7d07-1920w.png",
     "/Resources/images/lennox_logo-524d6d9d-1920w.png",
     "/Resources/images/carrier-logo-ac907dd6-1920w.png",
-    "/Resources/images/Layer%201-6df10401-1920w.png",
     "/Resources/images/CONTINENTAL%20REFRIGIRATION%20-1920w.png",
     "/Resources/images/DELFIELD-1920w.png",
     "/Resources/images/FOLLETT-1920w.jpeg",
-    "/Resources/images/HUSSMANN-1920w.jpeg",
-    "/Resources/images/MANITOWOC-1920w.png",
-    "/Resources/images/ICE%20O%20MATiC%20-1920w.png",
-    "/Resources/images/TRAULSEN%20-1920w.jpeg",
-    "/Resources/images/TRUE%20REFRIGIRATION%20-1920w.png"
+    "/Resources/images/HUSSMANN-1920w.jpeg"
   ];
 
   function ensureStyles() {
@@ -103,7 +98,7 @@
           return;
         }
         if (state.index < 0) {
-          moveTo(Math.max(0, state.total - state.visible), false);
+          moveTo(Math.max(0, state.total - 1), false);
         }
       }, 430);
     }
@@ -118,21 +113,21 @@
     function startAuto() {
       stopAuto();
       state.timer = window.setInterval(() => {
-        slideBy(state.visible);
+        slideBy(1);
       }, 4200);
     }
 
     function onPrev(event) {
       event.preventDefault();
       event.stopPropagation();
-      slideBy(-state.visible);
+      slideBy(-1);
       startAuto();
     }
 
     function onNext(event) {
       event.preventDefault();
       event.stopPropagation();
-      slideBy(state.visible);
+      slideBy(1);
       startAuto();
     }
 
