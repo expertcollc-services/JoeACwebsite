@@ -2,12 +2,14 @@
   "use strict";
 
   var TARGET_CONTAINER_ID = "6c385d1b";
+  var DESIRED_CARD_TOTAL = 5;
+  var INJECTED_CLASS = "ac-extra-service-card";
 
   var EXTRA_CARDS = [
     {
       title: "Home Services",
-      description: "Explore our commercial HVAC and refrigeration services for your business.",
-      href: "/home/"
+      description: "Explore our HVAC and refrigeration services for your business.",
+      href: "/services/"
     },
     {
       title: "Reviews",
@@ -24,19 +26,40 @@
     var style = document.createElement("style");
     style.id = "ac-extra-service-cards-style";
     style.textContent = [
-      "[id='6c385d1b']{flex-wrap:wrap!important;}",
-      "[id='6c385d1b'] .ac-extra-service-card{min-height:8px;column-gap:4%;row-gap:16px;background-color:var(--color_3,#fff);border-radius:5px;box-shadow:#676f72 3px 0 11px 0;width:32.3333333333%;justify-content:space-between;align-items:center;min-width:4%;padding:25px;margin:0;display:flex;flex-direction:column;}",
+      "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:space-between!important;column-gap:1.25%!important;row-gap:20px!important;}",
+      "[id='6c385d1b'] > .flex-element.group{width:19%!important;max-width:19%!important;flex:0 0 19%!important;margin:0!important;min-height:240px!important;align-items:center!important;}",
+      "[id='6c385d1b'] > .flex-element.group [data-widget-type='link']{width:100%!important;max-width:100%!important;height:50px!important;}",
+      "[id='6c385d1b'] > .flex-element.group a.dmButtonLink{width:100%!important;}",
+      "[id='6c385d1b'] > .flex-element.group .text{white-space:nowrap;}",
+      "[id='6c385d1b'] .ac-extra-service-card{min-height:240px;column-gap:4%;row-gap:16px;background-color:var(--color_3,#fff);border-radius:5px;box-shadow:#676f72 3px 0 11px 0;justify-content:space-between;align-items:center;min-width:4%;padding:25px;display:flex;flex-direction:column;}",
       "[id='6c385d1b'] .ac-extra-service-card .ac-card-title,[id='6c385d1b'] .ac-extra-service-card .ac-card-description{width:100%;}",
       "[id='6c385d1b'] .ac-extra-service-card .ac-card-title h4{margin:0;}",
       "[id='6c385d1b'] .ac-extra-service-card .ac-card-description p{margin:0;line-height:1.5;}",
-      "[id='6c385d1b'] .ac-extra-service-card .ac-card-action{width:280px;max-width:100%;height:50px;}",
       "[id='6c385d1b'] .ac-extra-service-icon{width:70px;height:70px;border:2px solid var(--color_1,#e50707);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:var(--color_1,#e50707);}",
       "[id='6c385d1b'] .ac-extra-service-icon .icon{font-size:28px;}",
-      "@media (min-width:767px) and (max-width:1024px){[id='6c385d1b'] .ac-extra-service-card{width:48.5%;flex:1 1 auto;}}",
-      "@media (max-width:767px){[id='6c385d1b'] .ac-extra-service-card{width:100%;min-height:240px;}}",
-      "@media (min-width:468px) and (max-width:767px){[id='6c385d1b'] .ac-extra-service-card{width:48.5%;flex:1 1 auto;}}"
+      "@media (min-width:767px) and (max-width:1024px){[id='6c385d1b']{flex-wrap:wrap!important;column-gap:3%!important;}[id='6c385d1b'] > .flex-element.group{width:48.5%!important;max-width:48.5%!important;flex:0 0 48.5%!important;}}",
+      "@media (max-width:767px){[id='6c385d1b']{flex-wrap:wrap!important;row-gap:25px!important;}[id='6c385d1b'] > .flex-element.group{width:100%!important;max-width:100%!important;flex:0 0 100%!important;}}",
+      "@media (min-width:468px) and (max-width:767px){[id='6c385d1b']{column-gap:3%!important;}[id='6c385d1b'] > .flex-element.group{width:48.5%!important;max-width:48.5%!important;flex:0 0 48.5%!important;}}"
     ].join("");
     document.head.appendChild(style);
+  }
+
+  function getCards(container) {
+    if (!container) {
+      return [];
+    }
+
+    return Array.prototype.slice.call(container.children).filter(function (child) {
+      return child.classList && child.classList.contains("group") && child.querySelector("a.dmButtonLink");
+    });
+  }
+
+  function removeInjectedCards(container) {
+    getCards(container).forEach(function (card) {
+      if (card.classList.contains(INJECTED_CLASS)) {
+        card.remove();
+      }
+    });
   }
 
   function makeIcon() {
@@ -109,7 +132,7 @@
 
   function makeButton(href) {
     var wrap = document.createElement("div");
-    wrap.className = "flex-element widget-wrapper ac-card-action";
+    wrap.className = "flex-element widget-wrapper";
     wrap.setAttribute("data-auto", "flex-element-widget-wrapper");
     wrap.setAttribute("data-widget-type", "link");
 
@@ -141,7 +164,7 @@
 
   function buildCard(card) {
     var group = document.createElement("div");
-    group.className = "flex-element group ac-extra-service-card";
+    group.className = "flex-element group " + INJECTED_CLASS;
     group.setAttribute("data-auto", "flex-element-group");
 
     group.appendChild(makeIcon());
@@ -153,24 +176,36 @@
   }
 
   function applyCards(container) {
-    if (!container || container.dataset.acExtraCardsAdded === "1") {
-      return;
-    }
-    if (container.querySelector(".ac-extra-service-card")) {
-      container.dataset.acExtraCardsAdded = "1";
+    if (!container) {
       return;
     }
 
     injectStyles();
-    EXTRA_CARDS.forEach(function (card) {
-      container.appendChild(buildCard(card));
-    });
-    container.dataset.acExtraCardsAdded = "1";
+    removeInjectedCards(container);
+
+    var existing = getCards(container);
+    var needed = Math.max(0, DESIRED_CARD_TOTAL - existing.length);
+
+    for (var i = 0; i < needed && i < EXTRA_CARDS.length; i += 1) {
+      container.appendChild(buildCard(EXTRA_CARDS[i]));
+    }
+
+    var current = getCards(container);
+    if (current.length > DESIRED_CARD_TOTAL) {
+      var injected = current.filter(function (card) {
+        return card.classList.contains(INJECTED_CLASS);
+      });
+      var excess = current.length - DESIRED_CARD_TOTAL;
+
+      for (var j = injected.length - 1; j >= 0 && excess > 0; j -= 1) {
+        injected[j].remove();
+        excess -= 1;
+      }
+    }
   }
 
   function run() {
-    var container = document.getElementById(TARGET_CONTAINER_ID);
-    applyCards(container);
+    applyCards(document.getElementById(TARGET_CONTAINER_ID));
   }
 
   if (document.readyState === "loading") {
