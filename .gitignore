@@ -1,3 +1,6 @@
 node_modules/
 data/store.json.bak
 npm-debug.log*
+.env
+.env.*
+!.env.example
