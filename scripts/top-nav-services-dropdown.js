@@ -5,6 +5,15 @@
       href: "/"
     },
     {
+      label: "Services",
+      href: "/services/",
+      children: [
+        { label: "HVAC/Refrigeration", href: "/services/commercial-refrigeration/" },
+        { label: "Electrical", href: "/services/" },
+        { label: "Preventive Maintenance", href: "/services/preventive-maintenance-plans/" }
+      ]
+    },
+    {
       label: "Commercial HVAC",
       href: "/commercial-hvac/"
     },
