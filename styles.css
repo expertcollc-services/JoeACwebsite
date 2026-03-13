@@ -226,6 +226,74 @@ iframe {
   color: var(--ink-900);
 }
 
+.site-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.site-nav-link.is-active,
+.site-nav-item.is-active > .site-nav-link,
+.site-subnav-link.is-active {
+  color: var(--aqua-500);
+}
+
+.site-nav-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-nav-item.has-children > .site-nav-link::after {
+  content: "";
+  width: 0.48rem;
+  height: 0.48rem;
+  margin-left: 0.1rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.site-subnav-toggle {
+  display: none;
+}
+
+.site-subnav {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 0;
+  min-width: 260px;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.55rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(8, 22, 41, 0.14);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.site-subnav-link {
+  display: block;
+  padding: 0.62rem 0.8rem;
+  border-radius: 10px;
+}
+
+.site-subnav-link:hover {
+  background: rgba(240, 146, 34, 0.16);
+}
+
+.site-nav-item.has-children:hover > .site-subnav,
+.site-nav-item.has-children:focus-within > .site-subnav,
+.site-nav-item.has-children.is-open > .site-subnav {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .menu-btn {
   display: none;
   padding: 0.5rem 0.8rem;
@@ -2536,6 +2604,63 @@ tbody tr:hover {
 
   .site-nav a:hover {
     background: rgba(240, 146, 34, 0.16);
+  }
+
+  .site-nav-item {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .site-nav-link {
+    width: calc(100% - 3rem);
+  }
+
+  .site-nav-item.has-children > .site-nav-link::after {
+    display: none;
+  }
+
+  .site-subnav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid rgba(8, 22, 41, 0.14);
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--ink-800);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .site-subnav {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 0 0 0.95rem;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    opacity: 1;
+    pointer-events: none;
+    transform: none;
+  }
+
+  .site-nav-item.has-children.is-open > .site-subnav {
+    max-height: 18rem;
+    padding-top: 0.2rem;
+    pointer-events: auto;
+  }
+
+  .site-subnav-link {
+    padding: 0.45rem 0.75rem;
   }
 
   .hero-metrics {

@@ -33,7 +33,18 @@
       </a>
 
       <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" class="site-nav"><a href="/#home">Home</a><a href="/services/">Services</a><a href="/#coverage">Industries</a><a href="/#coverage">Locations</a><a href="/#reviews">Reviews</a><a href="/#about">About</a><a href="/#contact">Contact</a></nav>
+      <nav id="site-nav" class="site-nav"><a class="site-nav-link" href="/">Home</a>
+        <div class="site-nav-item has-children">
+          <a class="site-nav-link" href="/services/">Services</a>
+          <button class="site-subnav-toggle" type="button" aria-expanded="false" aria-label="Toggle Services submenu">
+            <span aria-hidden="true">+</span>
+            <span class="visually-hidden">Toggle Services submenu</span>
+          </button>
+          <div class="site-subnav">
+            <a class="site-subnav-link" href="/commercial-hvac/">Commercial HVAC</a><a class="site-subnav-link" href="/commercial-refrigeration/">Commercial Refrigeration</a><a class="site-subnav-link" href="/home-services/">Home Services</a><a class="site-subnav-link" href="/preventive-maintenance/">Preventive Maintenance</a>
+          </div>
+        </div>
+      <a class="site-nav-link" href="/service-area/">Service Area</a><a class="site-nav-link" href="/contact/">Contact</a></nav>
     </div>
   </header>
 
@@ -46,7 +57,7 @@
         <p>Elite Quality HVAC provides commercial HVAC and refrigeration support for businesses in Elmhurst and nearby Chicago suburbs.</p>
         <div class="hero-actions">
           <a href="/contact/" class="button">Request Service</a>
-          <a href="tel:+13125550119" class="button button-ghost">Call (312) 555-0119</a>
+          <a href="tel:+17086079575" class="button button-ghost">Call (708) 607-9575</a>
         </div>
       </div>
     </section>
@@ -72,7 +83,7 @@
             <p>Available for scheduled and emergency response across Chicago and surrounding suburbs.</p>
             <a class="button button-small" href="/contact/">Request Service</a>
             <h4>Related Pages</h4>
-            <ul><li><a href="/services/">Commercial HVAC Services</a></li><li><a href="/#coverage">Service Coverage</a></li><li><a href="/contact/">Request Service</a></li></ul>
+            <ul><li><a href="/services/">Commercial HVAC Services</a></li><li><a href="/service-area/">Service Area</a></li><li><a href="/contact/">Request Service</a></li></ul>
           </aside>
         </div>
       </section>
@@ -85,7 +96,7 @@
     <footer class="site-footer">
       <div class="container footer-shell">
         <p>&copy; <span id="year"></span> Elite Quality HVAC. All rights reserved.</p>
-        <div class="footer-links"><a href="/services/">Services</a><a href="/#coverage">Industries</a><a href="/#coverage">Locations</a><a href="/#reviews">Reviews</a><a href="/#contact">Contact</a></div>
+        <div class="footer-links"><a href="/">Home</a><a href="/services/">Services</a><a href="/service-area/">Service Area</a><a href="/contact/">Contact</a></div>
       </div>
     </footer>
   

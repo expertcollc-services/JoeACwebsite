@@ -2311,8 +2311,13 @@ app.use("/api", (_req, res) => {
   });
 });
 
-app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "404.html"));
+app.use((req, res, next) => {
+  const filePath = path.join(__dirname, "404.html");
+  res.status(404).sendFile(filePath, (err) => {
+    if (err) {
+      next(err);
+    }
+  });
 });
 
 app.use((err, _req, res, _next) => {
@@ -2330,10 +2335,12 @@ app.use((err, _req, res, _next) => {
 
   const errorId = makeId("err");
   console.error(`[${errorId}]`, err);
-  res.status(500).json({
-    error: "Unexpected server error.",
-    errorId
-  });
+  if (!res.headersSent) {
+    res.status(500).json({
+      error: "Unexpected server error.",
+      errorId
+    });
+  }
 });
 
 function csvCell(value) {

@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { services } from "../site/data/services.mjs";
+import { primaryServiceLandings, services } from "../site/data/services.mjs";
 import { industries } from "../site/data/industries.mjs";
 import { locationCities } from "../site/data/locations.mjs";
 
@@ -12,7 +12,6 @@ import {
   slugify,
   canonicalFromRelative,
   renderAboutPage,
-  renderContactPage,
   renderDetailPage,
   renderHubPage,
   renderNotFoundPage,
@@ -40,9 +39,13 @@ async function generateHubAndDetails({
   hubHeading,
   hubIntro,
   items,
-  relatedLinks
+  relatedLinks,
+  hubCards,
+  ctaEyebrow,
+  ctaHeading,
+  ctaText
 }) {
-  const cards = items.map((item) => ({
+  const cards = hubCards || items.map((item) => ({
     href: `/${folder}/${item.slug}/`,
     title: item.title,
     summary: item.summary,
@@ -58,7 +61,10 @@ async function generateHubAndDetails({
       eyebrow: hubEyebrow,
       heading: hubHeading,
       intro: hubIntro,
-      cards
+      cards,
+      ctaEyebrow,
+      ctaHeading,
+      ctaText
     })
   );
 
@@ -112,7 +118,7 @@ function renderLocationPage(city, tier) {
       ],
       relatedLinks: [
         { href: "/services/", label: "Commercial HVAC Services" },
-        { href: "/#coverage", label: "Service Coverage" },
+        { href: "/service-area/", label: "Service Area" },
         { href: "/contact/", label: "Request Service" }
       ]
     })
@@ -145,18 +151,50 @@ Sitemap: ${BASE_URL}/sitemap.xml
 async function main() {
   await generateHubAndDetails({
     folder: "services",
-    hubTitle: "Commercial HVAC Services in Chicago",
-    hubDescription: "Commercial HVAC and refrigeration service options for Chicago and Chicagoland facilities.",
+    hubTitle: "HVAC and Refrigeration Services in Chicago",
+    hubDescription: "Commercial HVAC, commercial refrigeration, home HVAC, and preventive maintenance services across Chicago and nearby suburbs.",
     hubEyebrow: "Services",
-    hubHeading: "Commercial HVAC Services",
-    hubIntro: "Explore media-rich service pages with photos, scope details, and practical next steps.",
+    hubHeading: "HVAC and Refrigeration Services",
+    hubIntro: "Choose the service page that matches your property, equipment, and maintenance needs.",
     items: services,
+    hubCards: primaryServiceLandings.map((item) => ({
+      href: item.canonicalPath,
+      title: item.heading,
+      summary: item.summary
+    })),
+    ctaEyebrow: "Service Planning",
+    ctaHeading: "Need help choosing the right service?",
+    ctaText: "Tell us whether you need commercial HVAC, refrigeration, residential HVAC, or preventive maintenance support and we will point you in the right direction.",
     relatedLinks: [
       { href: "/contact/", label: "Request Service" },
-      { href: "/industries/", label: "Industries We Serve" },
-      { href: "/locations/", label: "Service Areas" }
+      { href: "/service-area/", label: "Service Area" },
+      { href: "/preventive-maintenance/", label: "Preventive Maintenance" }
     ]
   });
+
+  for (const landingPage of primaryServiceLandings) {
+    await writePage(
+      landingPage.outputPath,
+      renderDetailPage({
+        title: landingPage.title,
+        description: landingPage.summary,
+        canonicalPath: landingPage.canonicalPath,
+        eyebrow: landingPage.eyebrow,
+        heading: landingPage.heading,
+        intro: landingPage.summary,
+        keyword: landingPage.keyword || landingPage.heading.toLowerCase(),
+        highlights: landingPage.highlights,
+        fit: landingPage.fit,
+        heroImage: landingPage.heroImage,
+        galleryImages: landingPage.galleryImages,
+        relatedLinks: landingPage.relatedLinks,
+        sidebarTitle: landingPage.sidebarTitle,
+        sidebarText: landingPage.sidebarText,
+        nextStepText: landingPage.nextStepText,
+        contentSections: landingPage.contentSections
+      })
+    );
+  }
 
   await generateHubAndDetails({
     folder: "industries",
@@ -168,7 +206,7 @@ async function main() {
     items: industries,
     relatedLinks: [
       { href: "/services/", label: "Core Services" },
-      { href: "/#coverage", label: "Service Areas" },
+      { href: "/service-area/", label: "Service Area" },
       { href: "/contact/", label: "Request Service" }
     ]
   });
@@ -202,7 +240,6 @@ async function main() {
   }
 
   await writePage("about/index.html", renderAboutPage());
-  await writePage("contact/index.html", renderContactPage());
   await writePage("reviews/index.html", renderReviewsPage());
   await writePage("404.html", renderNotFoundPage());
 

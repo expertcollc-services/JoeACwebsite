@@ -1,21 +1,30 @@
 export const BASE_URL = process.env.SITE_BASE_URL || "https://elitequalityhvac.com";
+const PHONE_DISPLAY = "(708) 607-9575";
+const PHONE_HREF = "tel:+17086079575";
+const ADDRESS_LINE_1 = "111 W Jackson, STE 1700";
+const ADDRESS_CITY = "Chicago, IL 60604";
 
 export const NAV_LINKS = [
-  { href: "/#home", label: "Home" },
-  { href: "/services/", label: "Services" },
-  { href: "/#coverage", label: "Industries" },
-  { href: "/#coverage", label: "Locations" },
-  { href: "/#reviews", label: "Reviews" },
-  { href: "/#about", label: "About" },
-  { href: "/#contact", label: "Contact" }
+  { href: "/", label: "Home" },
+  {
+    href: "/services/",
+    label: "Services",
+    children: [
+      { href: "/commercial-hvac/", label: "Commercial HVAC" },
+      { href: "/commercial-refrigeration/", label: "Commercial Refrigeration" },
+      { href: "/home-services/", label: "Home Services" },
+      { href: "/preventive-maintenance/", label: "Preventive Maintenance" }
+    ]
+  },
+  { href: "/service-area/", label: "Service Area" },
+  { href: "/contact/", label: "Contact" }
 ];
 
 const FOOTER_LINKS = [
+  { href: "/", label: "Home" },
   { href: "/services/", label: "Services" },
-  { href: "/#coverage", label: "Industries" },
-  { href: "/#coverage", label: "Locations" },
-  { href: "/#reviews", label: "Reviews" },
-  { href: "/#contact", label: "Contact" }
+  { href: "/service-area/", label: "Service Area" },
+  { href: "/contact/", label: "Contact" }
 ];
 
 export function esc(value) {
@@ -42,10 +51,43 @@ export function canonicalFromRelative(relativePath) {
   return `/${normalized}`;
 }
 
-function navHtml() {
+function isNavActive(link, currentPath) {
+  if (!link) return false;
+  if (link.href === "/") return currentPath === "/";
+  if (currentPath === link.href || currentPath.startsWith(link.href)) return true;
+  if (Array.isArray(link.children)) {
+    return link.children.some((child) => currentPath === child.href || currentPath.startsWith(child.href));
+  }
+  return false;
+}
+
+function navHtml(currentPath) {
   return NAV_LINKS.map((link) => {
-    const className = link.button ? ' class="button button-small"' : "";
-    return `<a${className} href="${link.href}">${esc(link.label)}</a>`;
+    const activeClass = isNavActive(link, currentPath) ? " is-active" : "";
+
+    if (Array.isArray(link.children) && link.children.length) {
+      const subnav = link.children
+        .map((child) => {
+          const childActiveClass = currentPath === child.href || currentPath.startsWith(child.href) ? " is-active" : "";
+          return `<a class="site-subnav-link${childActiveClass}" href="${child.href}">${esc(child.label)}</a>`;
+        })
+        .join("");
+
+      return `
+        <div class="site-nav-item has-children${activeClass}">
+          <a class="site-nav-link${activeClass}" href="${link.href}">${esc(link.label)}</a>
+          <button class="site-subnav-toggle" type="button" aria-expanded="false" aria-label="Toggle ${esc(link.label)} submenu">
+            <span aria-hidden="true">+</span>
+            <span class="visually-hidden">Toggle ${esc(link.label)} submenu</span>
+          </button>
+          <div class="site-subnav">
+            ${subnav}
+          </div>
+        </div>
+      `;
+    }
+
+    return `<a class="site-nav-link${activeClass}" href="${link.href}">${esc(link.label)}</a>`;
   }).join("");
 }
 
@@ -98,7 +140,7 @@ export function renderPage({ title, description, canonicalPath, eyebrow, heading
       </a>
 
       <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav id="site-nav" class="site-nav">${navHtml()}</nav>
+      <nav id="site-nav" class="site-nav">${navHtml(canonicalPath)}</nav>
     </div>
   </header>
 
@@ -111,7 +153,7 @@ export function renderPage({ title, description, canonicalPath, eyebrow, heading
         <p>${esc(intro)}</p>
         <div class="hero-actions">
           <a href="/contact/" class="button">Request Service</a>
-          <a href="tel:+13125550119" class="button button-ghost">Call (312) 555-0119</a>
+          <a href="${PHONE_HREF}" class="button button-ghost">Call ${esc(PHONE_DISPLAY)}</a>
         </div>
       </div>
     </section>`}
@@ -136,7 +178,22 @@ export function renderHubCards(cards) {
     .join("");
 }
 
-export function renderHubPage({ title, description, canonicalPath, eyebrow, heading, intro, cards }) {
+export function renderHubPage({
+  title,
+  description,
+  canonicalPath,
+  eyebrow,
+  heading,
+  intro,
+  cards,
+  ctaEyebrow = "Commercial HVAC Team",
+  ctaHeading = "Need priority support for your building?",
+  ctaText = "Request service and we will coordinate with your facility team quickly.",
+  ctaPrimaryHref = "/contact/",
+  ctaPrimaryText = "Request Service",
+  ctaSecondaryHref = PHONE_HREF,
+  ctaSecondaryText = `Call ${PHONE_DISPLAY}`
+}) {
   return renderPage({
     title,
     description,
@@ -155,13 +212,13 @@ export function renderHubPage({ title, description, canonicalPath, eyebrow, head
       <section class="section cta-band">
         <div class="container cta-band-shell">
           <div>
-            <p class="eyebrow">Commercial HVAC Team</p>
-            <h2>Need priority support for your building?</h2>
-            <p>Request service and we will coordinate with your facility team quickly.</p>
+            <p class="eyebrow">${esc(ctaEyebrow)}</p>
+            <h2>${esc(ctaHeading)}</h2>
+            <p>${esc(ctaText)}</p>
           </div>
           <div class="hero-actions">
-            <a class="button" href="/contact/">Request Service</a>
-            <a class="button button-ghost" href="tel:+13125550119">Call (312) 555-0119</a>
+            <a class="button" href="${ctaPrimaryHref}">${esc(ctaPrimaryText)}</a>
+            <a class="button button-ghost" href="${ctaSecondaryHref}">${esc(ctaSecondaryText)}</a>
           </div>
         </div>
       </section>
@@ -183,7 +240,10 @@ export function renderDetailPage({
   heroImage,
   galleryImages = [],
   mediaEmbedUrl = "",
-  contentSections = []
+  contentSections = [],
+  sidebarTitle = "Chicago Commercial Service",
+  sidebarText = "Available for scheduled and emergency response across Chicago and surrounding suburbs.",
+  nextStepText = "Share your building type, equipment issue, and preferred schedule. We provide a clear plan and timeline."
 }) {
   const related = relatedLinks
     .map((link) => `<li><a href="${link.href}">${esc(link.label)}</a></li>`)
@@ -269,11 +329,11 @@ export function renderDetailPage({
             <h2>Best Fit For</h2>
             <ul>${bulletsB}</ul>
             <h2>Next Step</h2>
-            <p>Share your building type, equipment issue, and preferred schedule. We provide a clear plan and timeline.</p>
+            <p>${esc(nextStepText)}</p>
           </article>
           <aside class="quick-facts">
-            <h3>Chicago Commercial Service</h3>
-            <p>Available for scheduled and emergency response across Chicago and surrounding suburbs.</p>
+            <h3>${esc(sidebarTitle)}</h3>
+            <p>${esc(sidebarText)}</p>
             <a class="button button-small" href="/contact/">Request Service</a>
             <h4>Related Pages</h4>
             <ul>${related}</ul>
@@ -301,9 +361,8 @@ export function renderContactPage() {
             <p class="eyebrow">Contact Details</p>
             <h2>Commercial HVAC and Refrigeration Support</h2>
             <ul>
-              <li>Phone: <a href="tel:+13125550119">(312) 555-0119</a></li>
-              <li>Email: <a href="mailto:service@elitequalityhvac.com">service@elitequalityhvac.com</a></li>
-              <li>Address: 747 S Dixie Ave, Chicago, IL</li>
+              <li>Phone: <a href="${PHONE_HREF}">${esc(PHONE_DISPLAY)}</a></li>
+              <li>Address: ${esc(ADDRESS_LINE_1)}, ${esc(ADDRESS_CITY)}</li>
               <li>Hours: 24/7 emergency dispatch, scheduled service 7am-6pm</li>
             </ul>
           </div>
@@ -319,7 +378,7 @@ export function renderContactPage() {
             <div class="form-row split">
               <div>
                 <label for="lead-phone">Phone</label>
-                <input id="lead-phone" name="phone" type="tel" required autocomplete="tel" maxlength="40" placeholder="(312) 555-0188">
+                <input id="lead-phone" name="phone" type="tel" required autocomplete="tel" maxlength="40" placeholder="${esc(PHONE_DISPLAY)}">
               </div>
               <div>
                 <label for="lead-email">Email</label>
@@ -438,9 +497,9 @@ export function renderNotFoundPage() {
         <div class="container">
           <div class="hub-grid">
             ${renderHubCards([
-              { href: "/", title: "Homepage", summary: "Commercial HVAC overview and fast ways to request service." },
-              { href: "/services/", title: "Services", summary: "Repair, refrigeration, maintenance, and installation support." },
-              { href: "/locations/", title: "Locations", summary: "Areas we serve across Chicago and Chicagoland." },
+              { href: "/", title: "Homepage", summary: "Overview of commercial and home HVAC service options." },
+              { href: "/services/", title: "Services", summary: "Commercial HVAC, refrigeration, home services, and maintenance support." },
+              { href: "/service-area/", title: "Service Area", summary: "Areas we serve across Chicago and nearby suburbs." },
               { href: "/contact/", title: "Contact", summary: "Book service and talk with dispatch quickly." }
             ])}
           </div>

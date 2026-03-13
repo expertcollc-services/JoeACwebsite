@@ -2,19 +2,27 @@
   "use strict";
 
   var TARGET_CONTAINER_ID = "6c385d1b";
-  var DESIRED_CARD_TOTAL = 5;
   var INJECTED_CLASS = "ac-extra-service-card";
-
-  var EXTRA_CARDS = [
+  var SECTION_CARDS = [
     {
-      title: "Home Services",
-      description: "Explore our HVAC and refrigeration services for your business.",
-      href: "/commercial-hvac/"
+      title: "Commercial Services",
+      description: "Explore commercial HVAC, refrigeration, installation, and maintenance support.",
+      href: "/services/"
     },
     {
-      title: "Reviews",
-      description: "Read what local customers say about our team and results.",
-      href: "/home/"
+      title: "Home Services",
+      description: "See our residential HVAC repair, replacement, and maintenance options.",
+      href: "/home-services/"
+    },
+    {
+      title: "Service Area",
+      description: "View the Chicago-area communities and properties we serve.",
+      href: "/service-area/"
+    },
+    {
+      title: "Contact",
+      description: "Request service, ask a question, or call our team directly.",
+      href: "/contact/"
     }
   ];
 
@@ -27,7 +35,7 @@
     style.id = "ac-extra-service-cards-style";
     style.textContent = [
       "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:16px!important;overflow:visible!important;}",
-      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 64px)/5)!important;max-width:calc((100% - 64px)/5)!important;flex:0 0 calc((100% - 64px)/5)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;display:flex!important;opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
+      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 48px)/4)!important;max-width:calc((100% - 48px)/4)!important;flex:0 0 calc((100% - 48px)/4)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;display:flex!important;opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
       "[id='6c385d1b'] > .flex-element.group [data-auto='flex-element-widget-wrapper']{opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
       "[id='6c385d1b'] > .flex-element.group [data-widget-type='link']{width:100%!important;max-width:100%!important;height:50px!important;}",
       "[id='6c385d1b'] > .flex-element.group a.dmButtonLink{width:100%!important;}",
@@ -55,11 +63,9 @@
     });
   }
 
-  function removeInjectedCards(container) {
+  function removeExistingCards(container) {
     getCards(container).forEach(function (card) {
-      if (card.classList.contains(INJECTED_CLASS)) {
-        card.remove();
-      }
+      card.remove();
     });
   }
 
@@ -182,27 +188,10 @@
     }
 
     injectStyles();
-    removeInjectedCards(container);
-
-    var existing = getCards(container);
-    var needed = Math.max(0, DESIRED_CARD_TOTAL - existing.length);
-
-    for (var i = 0; i < needed && i < EXTRA_CARDS.length; i += 1) {
-      container.appendChild(buildCard(EXTRA_CARDS[i]));
-    }
-
-    var current = getCards(container);
-    if (current.length > DESIRED_CARD_TOTAL) {
-      var injected = current.filter(function (card) {
-        return card.classList.contains(INJECTED_CLASS);
-      });
-      var excess = current.length - DESIRED_CARD_TOTAL;
-
-      for (var j = injected.length - 1; j >= 0 && excess > 0; j -= 1) {
-        injected[j].remove();
-        excess -= 1;
-      }
-    }
+    removeExistingCards(container);
+    SECTION_CARDS.forEach(function (card) {
+      container.appendChild(buildCard(card));
+    });
   }
 
   function run() {
