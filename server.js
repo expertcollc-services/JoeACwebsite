@@ -1,4 +1,5 @@
 const express = require("express");
+const fsSync = require("node:fs");
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const crypto = require("node:crypto");
@@ -1485,6 +1486,8 @@ SINGLE_PAGE_REDIRECTS.forEach((rule) => {
   });
 });
 
+// Legacy exported pages reference an uppercase /Scripts path.
+app.use("/Scripts", express.static(path.join(__dirname, "scripts"), { maxAge: 0 }));
 app.use(express.static(__dirname, { extensions: ["html"], maxAge: 0 }));
 
 app.get("/sitemap.xml", (_req, res) => {
@@ -2313,7 +2316,7 @@ app.use("/api", (_req, res) => {
 
 app.use((req, res, next) => {
   const filePath = path.join(__dirname, "404.html");
-  if (fs.existsSync(filePath)) {
+  if (fsSync.existsSync(filePath)) {
     res.status(404).sendFile(filePath, (err) => {
       if (err) {
         next(err);
