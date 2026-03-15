@@ -1,7 +1,13 @@
 
+    // Handle image load errors gracefully
+    function handleImageLoadError(img) {
+        img.style.display = 'none';
+    }
+    window.handleImageLoadError = handleImageLoadError;
+
     window._currentDevice = 'desktop';
     window.Parameters = window.Parameters || {
-        HomeUrl: 'http://app.multiscreensite.com/site/7335dee2',
+        HomeUrl: 'https://app.multiscreensite.com/site/7335dee2',
         AccountUUID: '867caca9c9254343bd8260f2ae7d58e7',
         SystemID: 'US_DIRECT_PRODUCTION',
         SiteAlias: '7335dee2',

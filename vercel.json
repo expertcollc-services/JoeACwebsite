@@ -104,6 +104,21 @@
   ],
   "routes": [
     {
+      "src": "/Scripts/(.*)\\.js$",
+      "headers": { "Content-Type": "application/javascript" },
+      "continue": true
+    },
+    {
+      "src": "/scripts/(.*)\\.js$",
+      "headers": { "Content-Type": "application/javascript" },
+      "continue": true
+    },
+    {
+      "src": "/Style/(.*)\\.css$",
+      "headers": { "Content-Type": "text/css" },
+      "continue": true
+    },
+    {
       "src": "/sitemap.xml",
       "dest": "/server.js"
     },
