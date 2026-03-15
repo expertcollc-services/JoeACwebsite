@@ -38,6 +38,14 @@
       "use": "@vercel/static"
     },
     {
+      "src": "home-services/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "preventive-maintenance/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "service-area/**",
       "use": "@vercel/static"
     },

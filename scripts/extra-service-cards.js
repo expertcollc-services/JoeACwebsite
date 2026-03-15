@@ -68,6 +68,23 @@
     node.setAttribute("raw_url", href);
   }
 
+  function ensureDesktopLayout() {
+    var style = document.getElementById("homepage-service-card-layout");
+    if (style) {
+      return;
+    }
+
+    style = document.createElement("style");
+    style.id = "homepage-service-card-layout";
+    style.textContent = "@media (min-width: 1025px) {" +
+      "#bc044402, #ed975982, #\\33 a716a79, #\\34 4044aa6 {" +
+      "width: calc((100% - 9%) / 4) !important;" +
+      "flex: 0 1 calc((100% - 9%) / 4) !important;" +
+      "}" +
+      "}";
+    document.head.appendChild(style);
+  }
+
   function applyCard(card) {
     setTitle(card.titleId, card.title);
     setDescription(card.descriptionId, card.description);
@@ -76,6 +93,7 @@
   }
 
   function run() {
+    ensureDesktopLayout();
     CARDS.forEach(applyCard);
   }
 

@@ -2313,11 +2313,27 @@ app.use("/api", (_req, res) => {
 
 app.use((req, res, next) => {
   const filePath = path.join(__dirname, "404.html");
-  res.status(404).sendFile(filePath, (err) => {
-    if (err) {
-      next(err);
-    }
-  });
+  if (fs.existsSync(filePath)) {
+    res.status(404).sendFile(filePath, (err) => {
+      if (err) {
+        next(err);
+      }
+    });
+    return;
+  }
+
+  res.status(404).type("html").send(`<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+  </head>
+  <body>
+    <h1>Page Not Found</h1>
+    <p>The page you requested could not be found.</p>
+  </body>
+</html>`);
 });
 
 app.use((err, _req, res, _next) => {
