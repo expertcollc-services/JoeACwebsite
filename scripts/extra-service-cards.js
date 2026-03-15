@@ -1,201 +1,82 @@
 (function () {
   "use strict";
 
-  var TARGET_CONTAINER_ID = "6c385d1b";
-  var INJECTED_CLASS = "ac-extra-service-card";
-  var SECTION_CARDS = [
+  var CARDS = [
     {
+      graphicLinkId: "1786263212",
+      titleId: "1812700747",
+      descriptionId: "1274745051",
+      buttonId: "1116230057",
       title: "Commercial Services",
       description: "Explore commercial HVAC, refrigeration, installation, and maintenance support.",
       href: "/services/"
     },
     {
+      graphicLinkId: "1730851244",
+      titleId: "1086120194",
+      descriptionId: "1823530565",
+      buttonId: "1302228192",
       title: "Home Services",
       description: "See our residential HVAC repair, replacement, and maintenance options.",
       href: "/home-services/"
     },
     {
+      graphicLinkId: "1524080738",
+      titleId: "1067769202",
+      descriptionId: "1433626682",
+      buttonId: "1859571229",
       title: "Service Area",
       description: "View the Chicago-area communities and properties we serve.",
       href: "/service-area/"
     },
     {
+      graphicLinkId: "1616264286",
+      titleId: "1795211281",
+      descriptionId: "1032696055",
+      buttonId: "1852592942",
       title: "Contact",
       description: "Request service, ask a question, or call our team directly.",
       href: "/contact/"
     }
   ];
 
-  function injectStyles() {
-    if (document.getElementById("ac-extra-service-cards-style")) {
+  function setTitle(id, title) {
+    var node = document.getElementById(id);
+    if (!node) {
       return;
     }
 
-    var style = document.createElement("style");
-    style.id = "ac-extra-service-cards-style";
-    style.textContent = [
-      "[id='6c385d1b']{display:flex!important;flex-wrap:nowrap!important;justify-content:flex-start!important;gap:16px!important;overflow:visible!important;}",
-      "[id='6c385d1b'] > .flex-element.group{width:calc((100% - 48px)/4)!important;max-width:calc((100% - 48px)/4)!important;flex:0 0 calc((100% - 48px)/4)!important;box-sizing:border-box!important;margin:0!important;min-height:240px!important;align-items:center!important;display:flex!important;opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
-      "[id='6c385d1b'] > .flex-element.group [data-auto='flex-element-widget-wrapper']{opacity:1!important;visibility:visible!important;transform:none!important;animation:none!important;}",
-      "[id='6c385d1b'] > .flex-element.group [data-widget-type='link']{width:100%!important;max-width:100%!important;height:50px!important;}",
-      "[id='6c385d1b'] > .flex-element.group a.dmButtonLink{width:100%!important;}",
-      "[id='6c385d1b'] > .flex-element.group .text{white-space:nowrap;}",
-      "[id='6c385d1b'] .ac-extra-service-card{min-height:240px;column-gap:4%;row-gap:16px;background-color:var(--color_3,#fff);border-radius:5px;box-shadow:#676f72 3px 0 11px 0;justify-content:space-between;align-items:center;min-width:4%;padding:25px;display:flex;flex-direction:column;}",
-      "[id='6c385d1b'] .ac-extra-service-card .ac-card-title,[id='6c385d1b'] .ac-extra-service-card .ac-card-description{width:100%;}",
-      "[id='6c385d1b'] .ac-extra-service-card .ac-card-title h4{margin:0;}",
-      "[id='6c385d1b'] .ac-extra-service-card .ac-card-description p{margin:0;line-height:1.5;}",
-      "[id='6c385d1b'] .ac-extra-service-icon{width:70px;height:70px;border:2px solid var(--color_1,#e50707);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:var(--color_1,#e50707);}",
-      "[id='6c385d1b'] .ac-extra-service-icon .icon{font-size:28px;}",
-      "@media (min-width:767px) and (max-width:1024px){[id='6c385d1b']{flex-wrap:wrap!important;gap:16px!important;}[id='6c385d1b'] > .flex-element.group{width:calc((100% - 16px)/2)!important;max-width:calc((100% - 16px)/2)!important;flex:0 0 calc((100% - 16px)/2)!important;}}",
-      "@media (max-width:767px){[id='6c385d1b']{flex-wrap:wrap!important;row-gap:25px!important;}[id='6c385d1b'] > .flex-element.group{width:100%!important;max-width:100%!important;flex:0 0 100%!important;}}",
-      "@media (min-width:468px) and (max-width:767px){[id='6c385d1b']{gap:16px!important;}[id='6c385d1b'] > .flex-element.group{width:calc((100% - 16px)/2)!important;max-width:calc((100% - 16px)/2)!important;flex:0 0 calc((100% - 16px)/2)!important;}}"
-    ].join("");
-    document.head.appendChild(style);
+    node.innerHTML = '<h4 class="text-align-center"><span style="display: unset;">' + title + "</span></h4>";
   }
 
-  function getCards(container) {
-    if (!container) {
-      return [];
-    }
-
-    return Array.prototype.slice.call(container.children).filter(function (child) {
-      return child.classList && child.classList.contains("group") && child.querySelector("a.dmButtonLink");
-    });
-  }
-
-  function removeExistingCards(container) {
-    getCards(container).forEach(function (card) {
-      card.remove();
-    });
-  }
-
-  function makeIcon() {
-    var iconWrap = document.createElement("div");
-    iconWrap.className = "flex-element widget-wrapper";
-    iconWrap.setAttribute("data-auto", "flex-element-widget-wrapper");
-
-    var icon = document.createElement("div");
-    icon.className = "ac-extra-service-icon";
-
-    var iconGlyph = document.createElement("span");
-    iconGlyph.className = "icon hasFontIcon icon-star";
-    iconGlyph.setAttribute("aria-hidden", "true");
-
-    icon.appendChild(iconGlyph);
-    iconWrap.appendChild(icon);
-    return iconWrap;
-  }
-
-  function makeTitle(title) {
-    var wrap = document.createElement("div");
-    wrap.className = "flex-element widget-wrapper ac-card-title";
-    wrap.setAttribute("data-auto", "flex-element-widget-wrapper");
-    wrap.setAttribute("data-widget-type", "paragraph");
-
-    var paragraph = document.createElement("div");
-    paragraph.className = "dmNewParagraph";
-    paragraph.setAttribute("data-element-type", "paragraph");
-    paragraph.setAttribute("data-version", "5");
-
-    var h4 = document.createElement("h4");
-    h4.className = "text-align-center";
-
-    var span = document.createElement("span");
-    span.style.display = "unset";
-    span.textContent = title;
-
-    h4.appendChild(span);
-    paragraph.appendChild(h4);
-    wrap.appendChild(paragraph);
-    return wrap;
-  }
-
-  function makeDescription(text) {
-    var wrap = document.createElement("div");
-    wrap.className = "flex-element widget-wrapper ac-card-description";
-    wrap.setAttribute("data-auto", "flex-element-widget-wrapper");
-    wrap.setAttribute("data-widget-type", "paragraph");
-
-    var paragraph = document.createElement("div");
-    paragraph.className = "dmNewParagraph";
-    paragraph.setAttribute("data-element-type", "paragraph");
-    paragraph.setAttribute("data-version", "5");
-
-    var p = document.createElement("p");
-    p.className = "m-size-15 text-align-center size-16";
-    p.style.lineHeight = "1.5";
-
-    var span = document.createElement("span");
-    span.style.display = "unset";
-    span.style.color = "rgb(45, 46, 50)";
-    span.className = "m-font-size-15 font-size-16";
-    span.textContent = text;
-
-    p.appendChild(span);
-    paragraph.appendChild(p);
-    wrap.appendChild(paragraph);
-    return wrap;
-  }
-
-  function makeButton(href) {
-    var wrap = document.createElement("div");
-    wrap.className = "flex-element widget-wrapper";
-    wrap.setAttribute("data-auto", "flex-element-widget-wrapper");
-    wrap.setAttribute("data-widget-type", "link");
-
-    var link = document.createElement("a");
-    link.setAttribute("data-display-type", "block");
-    link.className = "align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient";
-    link.setAttribute("file", "false");
-    link.href = href;
-    link.setAttribute("data-element-type", "dButtonLinkId");
-    link.setAttribute("raw_url", href);
-
-    var iconBg = document.createElement("span");
-    iconBg.className = "iconBg";
-    iconBg.setAttribute("aria-hidden", "true");
-    var icon = document.createElement("span");
-    icon.className = "icon hasFontIcon icon-star";
-    iconBg.appendChild(icon);
-
-    var text = document.createElement("span");
-    text.className = "text";
-    text.textContent = "Learn More";
-
-    link.appendChild(iconBg);
-    link.appendChild(text);
-    wrap.appendChild(link);
-
-    return wrap;
-  }
-
-  function buildCard(card) {
-    var group = document.createElement("div");
-    group.className = "flex-element group " + INJECTED_CLASS;
-    group.setAttribute("data-auto", "flex-element-group");
-
-    group.appendChild(makeIcon());
-    group.appendChild(makeTitle(card.title));
-    group.appendChild(makeDescription(card.description));
-    group.appendChild(makeButton(card.href));
-
-    return group;
-  }
-
-  function applyCards(container) {
-    if (!container) {
+  function setDescription(id, description) {
+    var node = document.getElementById(id);
+    if (!node) {
       return;
     }
 
-    injectStyles();
-    removeExistingCards(container);
-    SECTION_CARDS.forEach(function (card) {
-      container.appendChild(buildCard(card));
-    });
+    node.innerHTML = '<p class="m-size-15 text-align-center size-16" style="line-height: 1.5;"><span style="display: unset; color: rgb(45, 46, 50);" class="m-font-size-15 font-size-16">' + description + "</span></p>";
+  }
+
+  function setLink(id, href) {
+    var node = document.getElementById(id);
+    if (!node) {
+      return;
+    }
+
+    node.href = href;
+    node.setAttribute("raw_url", href);
+  }
+
+  function applyCard(card) {
+    setTitle(card.titleId, card.title);
+    setDescription(card.descriptionId, card.description);
+    setLink(card.buttonId, card.href);
+    setLink(card.graphicLinkId, card.href);
   }
 
   function run() {
-    applyCards(document.getElementById(TARGET_CONTAINER_ID));
+    CARDS.forEach(applyCard);
   }
 
   if (document.readyState === "loading") {
