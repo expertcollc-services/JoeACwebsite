@@ -3,6 +3,7 @@
 
   var CARDS = [
     {
+      groupId: "bc044402",
       graphicLinkId: "1786263212",
       titleId: "1812700747",
       descriptionId: "1274745051",
@@ -39,6 +40,26 @@
       href: "/contact/"
     }
   ];
+
+  function unhideNode(id) {
+    var node = document.getElementById(id);
+    if (!node) {
+      return;
+    }
+
+    node.removeAttribute("data-anim-extended");
+    node.removeAttribute("data-anim-desktop");
+    node.style.visibility = "visible";
+    node.style.opacity = "1";
+
+    var animatedChildren = node.querySelectorAll("[data-anim-extended], [data-anim-desktop]");
+    Array.prototype.forEach.call(animatedChildren, function (child) {
+      child.removeAttribute("data-anim-extended");
+      child.removeAttribute("data-anim-desktop");
+      child.style.visibility = "visible";
+      child.style.opacity = "1";
+    });
+  }
 
   function setTitle(id, title) {
     var node = document.getElementById(id);
@@ -86,6 +107,10 @@
   }
 
   function applyCard(card) {
+    if (card.groupId) {
+      unhideNode(card.groupId);
+    }
+
     setTitle(card.titleId, card.title);
     setDescription(card.descriptionId, card.description);
     setLink(card.buttonId, card.href);

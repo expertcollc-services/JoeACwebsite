@@ -1464,11 +1464,11 @@ app.use((req, res, next) => {
       "base-uri 'self'",
       "object-src 'none'",
       "frame-ancestors 'self'",
-      "script-src 'self' https://cdn.jsdelivr.net",
+      "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google-analytics.com https://d2ra6nuwn69ktl.cloudfront.net",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: https:",
-      "connect-src 'self'",
+      "connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://sourcemaps-lambda.dwhitelabel.com",
       "form-action 'self'"
     ].join("; ")
   );

@@ -299,8 +299,7 @@
   
 
   
-
-{
+window.__siteBusinessSchema = {
   "@context" : {
     "@vocab" : "http://schema.org/"
   },
@@ -330,4 +329,4 @@
     "closes" : "24:00"
   } ],
   "@id" : "https://www.elitequalityhvac.com"
-}
+};
